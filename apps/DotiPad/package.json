@@ -1,0 +1,25 @@
+{
+  "name": "doti-pad",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@vueuse/motion": "^3.0.3",
+    "nuxt": "^3.16.0",
+    "nuxt-starter": "workspace:^",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@iconify-json/circle-flags": "^1.2.6",
+    "@iconify-json/material-symbols": "^1.2.16",
+    "@iconify/tailwind": "^1.2.0",
+    "jiti": "^2.4.2"
+  }
+}

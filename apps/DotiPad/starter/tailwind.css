@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply font-nunito;
+}
+
+/* Scrollbar Style */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    86deg,
+    #d16ba5 -14.21%,
+    #ba83ca 15.03%,
+    #9a9ae1 43.11%,
+    #69bff8 74.29%,
+    #52cffe 90.94%,
+    #5ffbf1 111.44%
+  );
+  border-radius: 3px;
+}
+
+@layer utilities {
+  :where(
+      .gradient-outline-1,
+      .gradient-outline-2,
+      .gradient-outline-3,
+      .gradient-outline-4
+    ) {
+    position: relative;
+    z-index: 0;
+  }
+
+  :where(
+      .gradient-outline-1,
+      .gradient-outline-2,
+      .gradient-outline-3,
+      .gradient-outline-4
+    )::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  :where(
+      .gradient-outline-1,
+      .gradient-outline-2,
+      .gradient-outline-3,
+      .gradient-outline-4
+    )::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: inherit;
+    z-index: -1;
+  }
+
+  .gradient-outline-1::before {
+    background: linear-gradient(to right, #c78dc3, #7c91db);
+  }
+
+  .gradient-outline-2::before {
+    background: linear-gradient(
+      to right,
+      #c78dc3,
+      #d98dcb,
+      #a88ed2,
+      #948fd7,
+      #7c91db
+    );
+  }
+
+  .gradient-outline-2::before {
+    background: linear-gradient(to right, #c78dc3, #7c91db);
+  }
+
+  .gradient-outline-3::before {
+    background: linear-gradient(
+      to right,
+      #d16ba5,
+      #ba83ca,
+      #9a9ae1,
+      #69bff8,
+      #52cffe,
+      #5ffbf1
+    );
+  }
+
+  .gradient-outline-4::before {
+    background: linear-gradient(
+      to right,
+      #1ebea5,
+      #00b5c4,
+      #00a8e6,
+      #0096fd,
+      #157afb
+    );
+  }
+
+  .border-gradient-1 {
+    border-image: linear-gradient(to right, #c78dc3, #7c91db) 1;
+  }
+  .border-gradient-2 {
+    border-image: linear-gradient(
+        to right,
+        #c78dc3,
+        #d98dcb,
+        #a88ed2,
+        #948fd7,
+        #7c91db
+      )
+      1;
+  }
+  .border-gradient-3 {
+    border-image: linear-gradient(
+        to right,
+        #d16ba5,
+        #ba83ca,
+        #9a9ae1,
+        #69bff8,
+        #52cffe,
+        #5ffbf1
+      )
+      1;
+  }
+  .border-gradient-4 {
+    border-image: linear-gradient(
+        to right,
+        #1ebea5,
+        #00b5c4,
+        #00a8e6,
+        #0096fd,
+        #157afb
+      )
+      1;
+  }
+}
