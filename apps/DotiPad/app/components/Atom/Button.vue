@@ -21,7 +21,6 @@ const isDisabled = computed(() => {
 </script>
 
 <template>
-  <!-- h-12 -->
   <button
     ref="btn"
     :class="[
@@ -32,7 +31,7 @@ const isDisabled = computed(() => {
       isDisabled && 'bg-neutral-gray-12',
     ]"
   >
-    <slot>{{ label }} </slot>
+    <slot>{{ label }}</slot>
   </button>
 </template>
 

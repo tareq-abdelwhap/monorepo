@@ -10,7 +10,7 @@
       ]"
     >
       <div class="w-fit">
-        <BaseImage src="/imgs/footer-logo.png" />
+        <AtomImage src="/imgs/footer-logo.png" />
       </div>
 
       <div class="flex gap-10 text-nun-sm">

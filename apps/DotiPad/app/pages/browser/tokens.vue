@@ -29,7 +29,7 @@ const tableHeaders = computed(() => {
     <div class="flex flex-col gap-20">
       <!-- DropDown and Tabs -->
       <div class="grid grid-cols-3 items-center gap-10">
-        <BaseDropdown
+        <MoleculeDropdown
           :items="['PancakeSwap V1', 'PancakeSwap V2']"
           :placeholder="$t('browser.selectExchange')"
           v-model="dropdownValue"
@@ -39,7 +39,7 @@ const tableHeaders = computed(() => {
           :visible="{ opacity: 1, x: 0, transition: { duration: 500 } }"
         />
 
-        <BaseTabs
+        <MoleculeTabs
           :tabs="tabs"
           v-motion
           :initial="{ opacity: 0, x: -20 }"
@@ -48,7 +48,7 @@ const tableHeaders = computed(() => {
       </div>
 
       <!-- Data Table -->
-      <BaseDataTable
+      <OrganismDataTable
         :headers="tableHeaders"
         :data="tableData"
         :control="{ filter: true, search: true, sort: true, pagination: true }"

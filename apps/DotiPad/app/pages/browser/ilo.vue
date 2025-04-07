@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { BaseButton, DashboardCard } from '#components';
-
 const { t } = useI18n();
 const dropdownValue = ref('');
 const tabs = ref([t('browser.allTokens'), t('browser.watchlist')]);
@@ -31,7 +29,7 @@ const tableHeaders = computed(() => {
     <div class="flex flex-col gap-20">
       <!-- DropDown and Tabs -->
       <div class="grid grid-cols-3 items-start gap-10">
-        <BaseDropdown
+        <MoleculeDropdown
           :items="['PancakeSwap V1', 'PancakeSwap V2']"
           :placeholder="$t('browser.selectExchange')"
           v-model="dropdownValue"
@@ -43,7 +41,7 @@ const tableHeaders = computed(() => {
       </div>
 
       <!-- Data Table -->
-      <BaseDataTable
+      <OrganismDataTable
         :headers="tableHeaders"
         :data="tableData"
         :control="{ filter: false, search: true, sort: true, pagination: true }"

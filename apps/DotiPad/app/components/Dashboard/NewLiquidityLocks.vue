@@ -92,7 +92,7 @@ const newLiquidityLocks = ref([
                 idx && 'justify-end',
               ]"
             >
-              <BaseButton
+              <AtomButton
                 v-if="header.name === 'view'"
                 class="!bg-neutral-gray-22"
               >
@@ -100,7 +100,7 @@ const newLiquidityLocks = ref([
                   class="bg-gradient-3 bg-clip-text text-transparent"
                   v-text="$t('view')"
                 />
-              </BaseButton>
+              </AtomButton>
 
               <span
                 v-else-if="typeof item[header.name] === 'string'"
@@ -111,7 +111,7 @@ const newLiquidityLocks = ref([
               <div v-else class="flex flex-col">
                 <span class="text-nun-sm" v-text="item[header.name][0]" />
                 <div class="flex items-center gap-1 justify-end">
-                  <BasePieChart
+                  <AtomPieChart
                     :percentage="item[header.name][1]"
                     class="w-4 h-4"
                   />

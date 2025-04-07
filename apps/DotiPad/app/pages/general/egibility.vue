@@ -34,7 +34,7 @@ const walletStore = useWalletStore();
               v-text="$t('egibility.howToGetWhitelisted')"
             />
 
-            <BaseButton
+            <AtomButton
               class="gradient-outline-3 w-fit"
               :label="$t('egibility.learnMore')"
             />

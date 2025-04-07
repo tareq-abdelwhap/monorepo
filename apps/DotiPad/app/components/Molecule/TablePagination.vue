@@ -39,9 +39,9 @@ watch(
   <div class="flex items-center justify-between">
     <!-- Pagination Entries -->
     <div class="flex items-center gap-2">
-      <span class="text-nun-sx" v-text="$t('table.show')" />
-      <BaseDropdown :items="entries" v-model="currentEntry" />
-      <span class="text-nun-sx" v-text="$t('table.entries')" />
+      <AtomText class="text-nun-sx" :text="$t('table.show')" />
+      <MoleculeDropdown :items="entries" v-model="currentEntry" />
+      <AtomText class="text-nun-sx" :text="$t('table.entries')" />
     </div>
 
     <!-- Pagination Pages -->
@@ -55,8 +55,8 @@ watch(
         ]"
         @click="prev"
       >
-        <span
-          class="icon-[material-symbols--keyboard-arrow-left] rtl:icon-[material-symbols--keyboard-arrow-right] w-6 h-6"
+        <AtomIcon
+          name="icon-[material-symbols--keyboard-arrow-left] rtl:icon-[material-symbols--keyboard-arrow-right]"
         />
       </div>
 
@@ -71,7 +71,7 @@ watch(
         ]"
         @click="() => (currentPage = i)"
       >
-        <span class="w-6 h-6 text-center" v-text="i" />
+        <AtomText class="w-6 h-6 text-center" :text="i" />
       </div>
 
       <div
@@ -83,8 +83,8 @@ watch(
         ]"
         @click="next"
       >
-        <span
-          class="icon-[material-symbols--keyboard-arrow-right] rtl:icon-[material-symbols--keyboard-arrow-left] w-6 h-6"
+        <AtomIcon
+          name="icon-[material-symbols--keyboard-arrow-right] rtl:icon-[material-symbols--keyboard-arrow-left]"
         />
       </div>
     </div>

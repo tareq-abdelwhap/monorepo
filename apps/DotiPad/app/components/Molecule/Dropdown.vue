@@ -96,23 +96,25 @@ watch(
     class="dropdown-container relative w-full"
   >
     <!-- Dropdown Button -->
-    <BaseButton :key="`button-${uniquID}`" @click="toggle" class="w-full h-14">
+    <AtomButton :key="`button-${uniquID}`" @click="toggle" class="w-full h-14">
       <div class="w-full flex items-center justify-between gap-2">
         <div class="flex flex-col grow items-start gap-px">
-          <span
+          <AtomLabel
+            v-if="placeholder"
             :class="[
               model && 'text-nun-sx font-normal text-neutral-gray-8',
               'transition-all duration-200 ease-in-out',
             ]"
-            v-text="placeholder"
+            :text="placeholder"
           />
-          <span
+
+          <AtomText
             v-if="model"
             class="text-nowrap"
-            v-text="
+            :text="
               Array.isArray(model) && multiple
                 ? $t('selected', model.length)
-                : model
+                : model as string
             "
             v-motion="`dropdown-selected-value-${uniquID}`"
             :initial="{ opacity: 0, y: -10 }"
@@ -122,25 +124,26 @@ watch(
         </div>
 
         <div :class="['flex items-center gap-1']">
-          <span
+          <AtomIcon
             v-if="!!model && clearValue"
+            name="icon-[material-symbols--close-small-outline-rounded]"
             :class="[
-              'icon-[material-symbols--close-small-outline-rounded] w-6 h-6 text-error-red-6',
+              'text-error-red-6',
               'transition-transform duration-200 ease-in-out',
             ]"
             @click.stop="clearValueFn"
           />
 
-          <span
+          <AtomIcon
+            name="icon-[material-symbols--keyboard-arrow-down-rounded]"
             :class="[
-              'icon-[material-symbols--keyboard-arrow-down-rounded] w-6 h-6',
               isOpen && '-rotate-180',
               'transition-transform duration-200 ease-in-out',
             ]"
           />
         </div>
       </div>
-    </BaseButton>
+    </AtomButton>
 
     <!-- Dropdown Menu -->
     <div
@@ -164,28 +167,17 @@ watch(
     >
       <div :class="['p-1 max-h-[300px] overflow-y-auto']">
         <ul class="flex flex-col gap-1">
-          <li
+          <MoleculeDropdownItem
             v-for="(str, idx) in items"
             :key="str"
-            :class="[
-              'px-2 py-1 m-px rounded-lg bg-neutral-gray-18 hover:gradient-outline-3',
-              !multiple && model === str && 'gradient-outline-3',
-              'flex justify-between items-center gap-2',
-              'cursor-pointer',
-              'text-nowrap',
-            ]"
-            @click="() => select(idx)"
-          >
-            <span v-text="str" />
-            <span
-              v-if="!multiple && model === str"
-              class="icon-[material-symbols--check-rounded] w-6 h-6"
-            />
-            <BaseCheckbox
-              v-if="multiple"
-              :checked="Array.isArray(model) && model.includes(str)"
-            />
-          </li>
+            :label="str"
+            :selected="
+              multiple
+                ? Array.isArray(model) && model.includes(str)
+                : model === str
+            "
+            @select="() => select(idx)"
+          />
         </ul>
       </div>
     </div>

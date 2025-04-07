@@ -27,7 +27,7 @@ const sort = (column: string) => emit('sort', column);
     v-if="[search, filter, sort].some(Boolean)"
     class="flex items-center gap-6"
   >
-    <BaseInputText
+    <MoleculeInputText
       v-if="search"
       v-model="searchQuery"
       name="search"
@@ -36,14 +36,14 @@ const sort = (column: string) => emit('sort', column);
     />
 
     <div v-if="[filter, sort].some(Boolean)" class="flex items-center gap-3">
-      <BaseDropdown
+      <MoleculeDropdown
         v-if="filter"
         :items="['Filter 01', 'Filter 02']"
         :placeholder="$t('table.filter')"
         clear-value
         multiple
       />
-      <BaseDropdown
+      <MoleculeDropdown
         v-if="sort"
         :items="sortColumns"
         :placeholder="$t('table.sort')"

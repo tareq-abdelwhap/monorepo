@@ -66,7 +66,7 @@ const pagedData = computed(() => {
 <template>
   <div class="flex flex-col gap-6">
     <!-- Control -->
-    <BaseDataTableControl
+    <MoleculeTableControl
       :search="control?.search"
       :filter="control?.filter"
       :sort="control?.sort"
@@ -80,49 +80,16 @@ const pagedData = computed(() => {
     />
 
     <!-- Table -->
-    <div
-      class="p-6 bg-neutral-gray-23 rounded-2xl z-0"
+    <MoleculeTable
+      :headers="headers"
+      :data="pagedData"
       v-motion
       :initial="{ opacity: 0 }"
       :visible="{ opacity: 1, transition: { duration: 700 } }"
-    >
-      <table class="w-full">
-        <thead>
-          <tr>
-            <th
-              v-for="(header, idx) in headers"
-              :key="header"
-              :class="[
-                'text-nun-h6 font-bold',
-                'p-4 border-b border-b-neutral-gray-22',
-                idx ? 'text-end' : 'text-start',
-              ]"
-            >
-              <span v-text="header" />
-            </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr v-for="(item, itemIdx) in pagedData" :key="item">
-            <td
-              v-for="(header, idx) in headers"
-              :key="header"
-              :class="[
-                'p-4 border-b-neutral-gray-22',
-                idx ? 'text-end' : 'text-start',
-                itemIdx + 1 < pagedData.length && 'border-b',
-              ]"
-            >
-              <span v-text="item[header]" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    />
 
     <!-- Pagination -->
-    <BaseDataTablePagination
+    <MoleculeTablePagination
       v-if="control?.pagination"
       :pages="pages"
       v-model:current-page="currentPage"

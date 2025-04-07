@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@vueuse/core": "^13.0.0",
     "@vueuse/motion": "^3.0.3",
     "nuxt": "^3.16.0",
     "nuxt-starter": "workspace:^",

@@ -32,7 +32,7 @@ const walletStore = useWalletStore();
 
     <!-- Wallet Buttons -->
     <div class="flex items-center gap-4 py-3">
-      <BaseButton
+      <AtomButton
         @click="() => (showNetworkModal = true)"
         v-motion
         :initial="{ opacity: 0, x: 20 }"
@@ -40,9 +40,9 @@ const walletStore = useWalletStore();
       >
         <SVG :name="networkStore.getSelectedNetwork().svg" class="w-6 h-6" />
         <span>{{ networkStore.getSelectedNetwork().shortName }}</span>
-      </BaseButton>
+      </AtomButton>
 
-      <BaseButton
+      <AtomButton
         @click="() => (showWalletModal = true)"
         v-motion
         :initial="{ opacity: 0, y: -20 }"
@@ -83,10 +83,13 @@ const walletStore = useWalletStore();
             "
           />
         </div>
-      </BaseButton>
+      </AtomButton>
     </div>
 
-    <BaseModal v-model="showNetworkModal" :header="$t('header.selectNetwork')">
+    <MoleculeModal
+      v-model="showNetworkModal"
+      :header="$t('header.selectNetwork')"
+    >
       <template #default="{ close }">
         <div class="flex flex-col gap-4">
           <div
@@ -121,9 +124,12 @@ const walletStore = useWalletStore();
           </div>
         </div>
       </template>
-    </BaseModal>
+    </MoleculeModal>
 
-    <BaseModal v-model="showWalletModal" :header="$t('header.connectWallet')">
+    <MoleculeModal
+      v-model="showWalletModal"
+      :header="$t('header.connectWallet')"
+    >
       <template #default="{ close }">
         <div class="flex flex-col gap-4">
           <div
@@ -155,7 +161,7 @@ const walletStore = useWalletStore();
           </div>
         </div>
       </template>
-    </BaseModal>
+    </MoleculeModal>
   </header>
 </template>
 

@@ -32,7 +32,7 @@ const createAccount = ref({ username: '' });
           :visible="{ opacity: 1, x: 0, transition: { duration: 500 } }"
         />
 
-        <BaseButton
+        <AtomButton
           class="w-72"
           @click="() => (showLoginModal = true)"
           v-motion
@@ -43,7 +43,7 @@ const createAccount = ref({ username: '' });
             class="bg-gradient-3 bg-clip-text text-transparent"
             v-text="$t('account.login')"
           />
-        </BaseButton>
+        </AtomButton>
       </div>
 
       <div class="grid grid-cols-2 gap-6">
@@ -108,7 +108,7 @@ const createAccount = ref({ username: '' });
               class="bg-neutral-gray-22 rounded-2xl px-6 py-4 flex flex-col gap-6"
             >
               <div class="flex items-center gap-5">
-                <BaseImage src="/imgs/logo.png" class="w-12 h-1w-12" />
+                <AtomImage src="/imgs/logo.png" class="w-12 h-1w-12" />
                 <span
                   class="text-nun-h6 font-bold"
                   v-text="'DOT'.toUpperCase()"
@@ -140,7 +140,7 @@ const createAccount = ref({ username: '' });
               class="bg-neutral-gray-22 rounded-2xl px-6 py-4 flex flex-col gap-6"
             >
               <div class="flex items-center gap-5">
-                <BaseImage src="/imgs/logo2.png" class="w-12 h-1w-12" />
+                <AtomImage src="/imgs/logo2.png" class="w-12 h-1w-12" />
                 <span
                   class="text-nun-h6 font-bold"
                   v-text="'IPAD'.toUpperCase()"
@@ -197,14 +197,14 @@ const createAccount = ref({ username: '' });
       </div>
     </div>
 
-    <BaseModal v-model="showLoginModal" :header="$t('account.login')">
+    <MoleculeModal v-model="showLoginModal" :header="$t('account.login')">
       <template #default="{ close, swap }">
         <div class="flex flex-col items-center gap-14">
           <span class="icon-[material-symbols--person] w-16 h-16" />
 
-          <BaseTabs :tabs="tabs" @tab-change="tab => (activeTab = tab)" />
+          <MoleculeTabs :tabs="tabs" @tab-change="tab => (activeTab = tab)" />
 
-          <BaseButton
+          <AtomButton
             v-if="activeTab === 0"
             class="w-full"
             v-motion
@@ -216,7 +216,7 @@ const createAccount = ref({ username: '' });
               class="bg-gradient-3 bg-clip-text text-transparent"
               v-text="$t('account.signMessage')"
             />
-          </BaseButton>
+          </AtomButton>
 
           <form
             @submit.prevent="close"
@@ -225,7 +225,7 @@ const createAccount = ref({ username: '' });
             class="flex flex-col gap-14 w-full"
           >
             <div class="flex flex-col gap-6">
-              <BaseInputText
+              <MoleculeInputText
                 :placeholder="$t('account.username')"
                 name="username"
                 v-model="loginWithPassword.username"
@@ -233,7 +233,7 @@ const createAccount = ref({ username: '' });
                 :initial="{ opacity: 0, y: 20 }"
                 :visible="{ opacity: 1, y: 0 }"
               />
-              <BaseInputPassword
+              <MoleculeInputPassword
                 :placeholder="$t('account.password')"
                 name="password"
                 v-model="loginWithPassword.password"
@@ -243,7 +243,7 @@ const createAccount = ref({ username: '' });
               />
             </div>
 
-            <BaseButton
+            <AtomButton
               type="submit"
               :label="$t('account.login')"
               :class="[
@@ -274,15 +274,15 @@ const createAccount = ref({ username: '' });
           </div>
         </div>
       </template>
-    </BaseModal>
+    </MoleculeModal>
 
-    <BaseModal
+    <MoleculeModal
       v-model="showCreateAccountModal"
       :header="$t('account.createAccount')"
     >
       <template #default="{ close, swap }">
         <div class="flex flex-col items-center gap-14">
-          <BaseInputText
+          <MoleculeInputText
             :placeholder="$t('account.username')"
             name="username"
             v-model="createAccount.username"
@@ -299,7 +299,7 @@ const createAccount = ref({ username: '' });
             :visible="{ opacity: 1, y: 0 }"
           >
             <div class="flex items-center gap-5">
-              <BaseImage src="/imgs/logo.png" class="w-12 h-1w-12" />
+              <AtomImage src="/imgs/logo.png" class="w-12 h-1w-12" />
               <span
                 class="text-nun-h6 font-bold"
                 v-text="'DOT'.toUpperCase()"
@@ -334,7 +334,7 @@ const createAccount = ref({ username: '' });
             :visible="{ opacity: 1, y: 0 }"
           >
             <div class="flex items-center gap-5">
-              <BaseImage src="/imgs/logo2.png" class="w-12 h-1w-12" />
+              <AtomImage src="/imgs/logo2.png" class="w-12 h-1w-12" />
               <span
                 class="text-nun-h6 font-bold"
                 v-text="'IPAD'.toUpperCase()"
@@ -361,7 +361,7 @@ const createAccount = ref({ username: '' });
             </div>
           </div>
 
-          <BaseButton
+          <AtomButton
             class="bg-gradient-3 w-full"
             v-motion
             :initial="{ opacity: 0, y: -20 }"
@@ -384,7 +384,7 @@ const createAccount = ref({ username: '' });
           </div>
         </div>
       </template>
-    </BaseModal>
+    </MoleculeModal>
   </LayoutPage>
 </template>
 

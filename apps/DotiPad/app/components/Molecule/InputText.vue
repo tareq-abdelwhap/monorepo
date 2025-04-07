@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { useFocus } from '@vueuse/core';
 
-defineProps<{ placeholder: string; name: string; icon: string }>();
+defineProps<{ placeholder: string; name: string; icon?: string }>();
 
 const value = defineModel<string>({ default: '' });
 
 const id = useId();
 
-const input = useTemplateRef('input');
+const input = useTemplateRef<HTMLInputElement>('input');
 const { focused } = useFocus(input);
 </script>
 
@@ -19,8 +19,9 @@ const { focused } = useFocus(input);
         'border border-neutral-gray-22 rounded-2xl px-4 pb-2 pt-6 w-full',
       ]"
     >
-      <span v-if="icon" :class="[icon, 'w-6 h-6 -mt-4']" />
-      <input
+      <AtomIcon v-if="icon" :name="icon" class="-mt-4" />
+
+      <AtomInput
         type="text"
         :name="name"
         :id="id"
@@ -30,8 +31,9 @@ const { focused } = useFocus(input);
       />
     </div>
 
-    <label
+    <AtomLabel
       :for="id"
+      :text="placeholder"
       :class="[
         'absolute text-neutral-gray-12',
         !icon && 'start-4',
@@ -41,9 +43,7 @@ const { focused } = useFocus(input);
           ? 'text-nun-sx top-1'
           : 'top-1/2 -translate-y-1/2',
       ]"
-    >
-      {{ placeholder }}
-    </label>
+    />
   </div>
 </template>
 

@@ -35,7 +35,7 @@ const services = ref([
       <template #header>
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <BaseImage src="/imgs/logo.png" class="w-10 h-10" />
+            <AtomImage src="/imgs/logo.png" class="w-10 h-10" />
             <span
               class="text-nun-regular font-bold"
               v-text="$t('dashboard.dot')"
@@ -65,25 +65,25 @@ const services = ref([
       <template #footer>
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2 z-0">
-            <BaseButton
+            <AtomButton
               class="!bg-neutral-gray-22 !rounded-2xl h-10 gradient-outline-3"
             >
-              <BaseImage src="/imgs/logo.png" class="w-6 h-6" />
+              <AtomImage src="/imgs/logo.png" class="w-6 h-6" />
               <div class="flex items-center gap-2 text-nun-sm font-bold">
                 <span v-text="'DOT'.toUpperCase()" />
                 <span v-text="'|'" />
                 <span v-text="useNumberFormat(320)" />
               </div>
-            </BaseButton>
+            </AtomButton>
 
-            <BaseButton class="!bg-neutral-gray-22 !rounded-2xl h-10">
-              <BaseImage src="/imgs/logo2.png" class="w-6 h-6" />
+            <AtomButton class="!bg-neutral-gray-22 !rounded-2xl h-10">
+              <AtomImage src="/imgs/logo2.png" class="w-6 h-6" />
               <div class="flex items-center gap-2 text-nun-sm font-bold">
                 <span v-text="'IPAD'.toUpperCase()" />
                 <span v-text="'|'" />
                 <span v-text="useNumberFormat(22)" />
               </div>
-            </BaseButton>
+            </AtomButton>
           </div>
 
           <!-- Charts by TradingView -->

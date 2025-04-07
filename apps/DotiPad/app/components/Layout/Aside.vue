@@ -13,7 +13,7 @@
       <div class="flex flex-col items-center gap-10">
         <!-- Logo -->
         <div class="py-6 px-5 cursor-pointer">
-          <BaseImage src="/imgs/logo.png" class="w-10" />
+          <AtomImage src="/imgs/logo.png" class="w-10" />
         </div>
 
         <!-- Menus -->
@@ -21,7 +21,7 @@
       </div>
 
       <!-- Language -->
-      <BaseLanguageSwitcher />
+      <MoleculeLanguageSwitcher />
     </div>
 
     <!-- navigation -->

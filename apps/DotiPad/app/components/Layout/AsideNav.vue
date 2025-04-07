@@ -29,7 +29,7 @@ const isRTL = computed(() => localeProperties.value.dir === 'rtl');
     </template>
 
     <div v-else class="flex flex-col gap-6">
-      <BaseTabs
+      <MoleculeTabs
         :tabs="getMenuList.list.map(item => item.name)"
         @tab-change="menusStore.getTabItems"
         v-motion

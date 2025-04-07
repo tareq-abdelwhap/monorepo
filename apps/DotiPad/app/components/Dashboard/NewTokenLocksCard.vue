@@ -51,7 +51,7 @@ defineProps<{
         <template v-for="item in tokenLock.body" :key="item.svg">
           <div class="text-start py-2 px-4 border-b border-neutral-gray-22">
             <div class="flex items-center gap-2">
-              <BaseImage
+              <AtomImage
                 v-if="item.svg.endsWith('.png')"
                 :src="`/imgs/svg/${item.svg}`"
                 :alt="item.svg"
@@ -71,7 +71,7 @@ defineProps<{
             <div class="flex flex-col">
               <span class="text-nun-sm" v-text="item.tokenLocked" />
               <div class="flex items-center gap-1 justify-end">
-                <BasePieChart
+                <AtomPieChart
                   :percentage="item.tokenLockedPercentage"
                   class="w-4 h-4"
                 />

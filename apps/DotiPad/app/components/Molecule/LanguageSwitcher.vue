@@ -22,11 +22,12 @@ useHead(() => ({
     class="flex items-center text-main-black-text text-sans-h5"
   >
     <slot :locale="otherLocale">
-      <span
+      <AtomIcon
         v-if="otherLocale?.code === 'en'"
-        class="icon-[circle-flags--lang-en] w-8 h-8"
+        name="icon-[circle-flags--lang-en]"
+        class="w-8 h-8"
       />
-      <span v-else class="icon-[circle-flags--lang-ar] w-8 h-8" />
+      <AtomIcon v-else name="icon-[circle-flags--lang-ar]" class="w-8 h-8" />
     </slot>
   </SwitchLocalePathLink>
 </template>

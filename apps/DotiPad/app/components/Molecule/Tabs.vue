@@ -36,7 +36,7 @@ onMounted(() => changeIndex(activeIndex));
 
 <template>
   <div class="relative flex p-1.5 bg-neutral-gray-23 w-full rounded-xl">
-    <BaseButton
+    <AtomButton
       v-for="(tab, idx) in tabs"
       ref="tab"
       :data-tab-index="idx"

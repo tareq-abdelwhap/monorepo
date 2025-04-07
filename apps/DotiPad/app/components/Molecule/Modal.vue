@@ -62,11 +62,16 @@ const swap = async (fn: () => void) => {
       <!-- Modal Header -->
       <div class="flex items-center justify-between">
         <slot name="header">
-          <h5 class="text-nun-h5 font-bold">{{ header }}</h5>
+          <AtomHeader
+            :level="5"
+            class="text-nun-h5 font-bold"
+            v-text="header"
+          />
         </slot>
 
-        <span
-          class="icon-[material-symbols--close-rounded] w-6 h-6 cursor-pointer"
+        <AtomIcon
+          name="icon-[material-symbols--close-rounded]"
+          class="cursor-pointer"
           @click="close"
         />
       </div>

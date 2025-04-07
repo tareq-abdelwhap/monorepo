@@ -7,7 +7,7 @@ const value = defineModel<string>({ default: '' });
 
 const id = useId();
 
-const input = useTemplateRef('input');
+const input = useTemplateRef<HTMLInputElement>('input');
 const { focused } = useFocus(input);
 
 const showPassword = ref(false);
@@ -16,7 +16,7 @@ const togglePassword = () => (showPassword.value = !showPassword.value);
 
 <template>
   <div class="relative flex flex-col gap-2 w-full">
-    <input
+    <AtomInput
       :type="showPassword ? 'text' : 'password'"
       :name="name"
       :id="id"
@@ -48,8 +48,9 @@ const togglePassword = () => (showPassword.value = !showPassword.value);
       </div>
     </div>
 
-    <label
+    <AtomLabel
       :for="id"
+      :text="placeholder"
       :class="[
         'text-neutral-gray-12',
         'absolute start-4',
@@ -58,9 +59,7 @@ const togglePassword = () => (showPassword.value = !showPassword.value);
           ? 'text-nun-sx top-1'
           : 'top-1/2 -translate-y-1/2',
       ]"
-    >
-      {{ placeholder }}
-    </label>
+    />
   </div>
 </template>
 
