@@ -45,10 +45,10 @@ export const useWalletStore = defineStore('WalletStore', () => {
 
   const getWallets = () => wallets.value;
 
-  const getSelectedWallet = () => {
+  const getSelectedWallet = (): WalletType => {
     return wallets.value.find(
       wallet => wallet.shortName === selectedWallet.value
-    );
+    ) as WalletType;
   };
 
   const setSelectedWallet = (wallet: WalletType['shortName']) => {

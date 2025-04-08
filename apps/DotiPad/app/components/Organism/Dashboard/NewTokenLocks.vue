@@ -120,9 +120,9 @@ const newTokenLocks = ref([
   <div class="grid grid-cols-2 gap-y-6 gap-x-8">
     <!-- Header -->
     <div class="col-span-2">
-      <h6
+      <AtomHeader
+        :level="6"
         class="text-nun-h6 font-bold"
-        v-text="$t('dashboard.newTokenLocks.title')"
         v-motion
         :initial="{ opacity: 0, y: -20 }"
         :visible="{
@@ -130,11 +130,13 @@ const newTokenLocks = ref([
           y: 0,
           transition: { duration: 100 },
         }"
-      />
+      >
+        {{ $t('dashboard.newTokenLocks.title') }}
+      </AtomHeader>
     </div>
 
     <!-- Cards -->
-    <DashboardNewTokenLocksCard
+    <MoleculeNewTokenLocksCard
       v-for="(item, idx) in newTokenLocks"
       :key="item.svg"
       :token-lock="item"

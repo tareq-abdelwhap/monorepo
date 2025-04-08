@@ -25,7 +25,7 @@ const tableHeaders = computed(() => {
 </script>
 
 <template>
-  <LayoutPage :header="$t('menu.browser.ilo')">
+  <OrganismPage :header="$t('menu.browser.ilo')">
     <div class="flex flex-col gap-20">
       <!-- DropDown and Tabs -->
       <div class="grid grid-cols-3 items-start gap-10">
@@ -47,7 +47,7 @@ const tableHeaders = computed(() => {
         :control="{ filter: false, search: true, sort: true, pagination: true }"
       />
     </div>
-  </LayoutPage>
+  </OrganismPage>
 </template>
 
 <style scoped></style>

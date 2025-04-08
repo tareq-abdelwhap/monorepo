@@ -14,7 +14,8 @@ const isRTL = computed(() => localeProperties.value.dir === 'rtl');
       'w-72 px-6 pt-32',
     ]"
   >
-    <h5
+    <AtomHeader
+      :level="5"
       class="text-nun-h5 font-bold"
       :key="getMenuList?.menu?.menu"
       v-motion
@@ -22,10 +23,10 @@ const isRTL = computed(() => localeProperties.value.dir === 'rtl');
       :enter="{ opacity: 1, y: 0, transition: { duration: 300 } }"
     >
       {{ $t(`menu.${getMenuList?.menu?.menu}.title`) }}
-    </h5>
+    </AtomHeader>
 
     <template v-if="getMenuList.list.every(item => item.svg)">
-      <LayoutAsideNavList :list="getMenuList.list" />
+      <MoleculeAsideNavList :list="getMenuList.list" />
     </template>
 
     <div v-else class="flex flex-col gap-6">
@@ -38,7 +39,7 @@ const isRTL = computed(() => localeProperties.value.dir === 'rtl');
         class="!h-12"
       />
 
-      <LayoutAsideNavList v-if="activeTabItems" :list="activeTabItems" />
+      <MoleculeAsideNavList v-if="activeTabItems" :list="activeTabItems" />
     </div>
   </nav>
 </template>

@@ -25,7 +25,7 @@ const tableHeaders = computed(() => {
 </script>
 
 <template>
-  <LayoutPage :header="$t('menu.browser.pairs')">
+  <OrganismPage :header="$t('menu.browser.pairs')">
     <div class="flex flex-col gap-20">
       <!-- DropDown and Tabs -->
       <div class="grid grid-cols-3 items-start gap-10">
@@ -39,7 +39,7 @@ const tableHeaders = computed(() => {
           :visible="{ opacity: 1, x: 0, transition: { duration: 500 } }"
         />
 
-        <DashboardCard
+        <MoleculeCard
           class="col-span-2"
           v-motion
           :initial="{ opacity: 0, x: -20 }"
@@ -47,25 +47,25 @@ const tableHeaders = computed(() => {
         >
           <div class="flex items-center justify-between">
             <div class="flex flex-col items-center gap-4">
-              <span
+              <AtomText
                 class="text-nun-h6 font-bold"
-                v-text="`${useNumberFormat(169.01)}M`"
+                :text="`${useNumberFormat(169.01)}M`"
               />
 
-              <span
+              <AtomText
                 class="text-nun-sm text-neutral-gray-8"
-                v-text="$t('browser.totalValueLockedInPairs', { count: 2234 })"
+                :text="$t('browser.totalValueLockedInPairs', { count: 2234 })"
               />
             </div>
 
             <AtomButton class="!bg-neutral-gray-22">
-              <span
+              <AtomText
                 class="bg-gradient-3 bg-clip-text text-transparent"
-                v-text="$t('browser.lockWithdrawLiquidity')"
+                :text="$t('browser.lockWithdrawLiquidity')"
               />
             </AtomButton>
           </div>
-        </DashboardCard>
+        </MoleculeCard>
       </div>
 
       <!-- Data Table -->
@@ -75,7 +75,7 @@ const tableHeaders = computed(() => {
         :control="{ filter: false, search: true, sort: true, pagination: true }"
       />
     </div>
-  </LayoutPage>
+  </OrganismPage>
 </template>
 
 <style scoped></style>

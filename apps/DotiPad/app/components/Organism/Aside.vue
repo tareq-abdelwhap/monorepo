@@ -17,7 +17,7 @@
         </div>
 
         <!-- Menus -->
-        <LayoutAsideMenus />
+        <MoleculeAsideMenus />
       </div>
 
       <!-- Language -->
@@ -25,7 +25,7 @@
     </div>
 
     <!-- navigation -->
-    <LayoutAsideNav />
+    <MoleculeAsideNav />
   </aside>
 </template>
 

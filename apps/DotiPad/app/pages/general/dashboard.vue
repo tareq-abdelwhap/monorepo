@@ -5,17 +5,17 @@ definePageMeta({
 </script>
 
 <template>
-  <LayoutPage :header="$t('menu.general.dashboard')">
+  <OrganismPage :header="$t('menu.general.dashboard')">
     <div class="flex flex-col gap-12">
-      <DashboardAnalysis />
+      <OrganismDashboardAnalysis />
 
-      <DashboardNewTokenLocks />
+      <OrganismDashboardNewTokenLocks />
 
-      <DashboardNewLiquidityLocks />
+      <OrganismDashboardNewLiquidityLocks />
 
-      <DashboardNewLiquidityLocks />
+      <OrganismDashboardNewLiquidityLocks />
     </div>
-  </LayoutPage>
+  </OrganismPage>
 </template>
 
 <style scoped></style>

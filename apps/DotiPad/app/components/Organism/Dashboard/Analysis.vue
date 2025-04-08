@@ -26,7 +26,7 @@ const services = ref([
 
 <template>
   <div class="grid grid-cols-3 gap-8">
-    <DashboardCard
+    <MoleculeCard
       class="col-span-2"
       v-motion
       :initial="{ opacity: 0, x: -20 }"
@@ -36,27 +36,30 @@ const services = ref([
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
             <AtomImage src="/imgs/logo.png" class="w-10 h-10" />
-            <span
+            <AtomText
               class="text-nun-regular font-bold"
-              v-text="$t('dashboard.dot')"
+              :text="$t('dashboard.dot')"
             />
           </div>
 
           <div class="flex items-center gap-2">
-            <span class="text-nun-sm" v-text="$t('dashboard.buyDotOn')" />
+            <AtomText class="text-nun-sm" :text="$t('dashboard.buyDotOn')" />
 
             <div
               class="flex items-center gap-1 rounded-full bg-neutral-gray-22 py-1 px-2"
             >
-              <SVG name="Pancakeswap" class="w-4 h-4" />
-              <span class="text-nun-sx" v-text="$t('dashboard.pancakeswap')" />
+              <AtomSVG name="Pancakeswap" class="w-4 h-4" />
+              <AtomText
+                class="text-nun-sx"
+                :text="$t('dashboard.pancakeswap')"
+              />
             </div>
 
             <div
               class="flex items-center gap-1 rounded-full bg-neutral-gray-22 py-1 px-2"
             >
-              <SVG name="Uniswap" class="w-4 h-4" />
-              <span class="text-nun-sx" v-text="$t('dashboard.uniswap')" />
+              <AtomSVG name="Uniswap" class="w-4 h-4" />
+              <AtomText class="text-nun-sx" :text="$t('dashboard.uniswap')" />
             </div>
           </div>
         </div>
@@ -70,32 +73,32 @@ const services = ref([
             >
               <AtomImage src="/imgs/logo.png" class="w-6 h-6" />
               <div class="flex items-center gap-2 text-nun-sm font-bold">
-                <span v-text="'DOT'.toUpperCase()" />
-                <span v-text="'|'" />
-                <span v-text="useNumberFormat(320)" />
+                <AtomText :text="'DOT'.toUpperCase()" />
+                <AtomText :text="'|'" />
+                <AtomText :text="useNumberFormat(320)" />
               </div>
             </AtomButton>
 
             <AtomButton class="!bg-neutral-gray-22 !rounded-2xl h-10">
               <AtomImage src="/imgs/logo2.png" class="w-6 h-6" />
               <div class="flex items-center gap-2 text-nun-sm font-bold">
-                <span v-text="'IPAD'.toUpperCase()" />
-                <span v-text="'|'" />
-                <span v-text="useNumberFormat(22)" />
+                <AtomText :text="'IPAD'.toUpperCase()" />
+                <AtomText :text="'|'" />
+                <AtomText :text="useNumberFormat(22)" />
               </div>
             </AtomButton>
           </div>
 
           <!-- Charts by TradingView -->
           <div class="flex items-center gap-2 z-0">
-            <span
+            <AtomText
               class="text-neutral-gray-8 text-nun-sm"
-              v-text="$t('dashboard.chartByTradingView')"
+              :text="$t('dashboard.chartByTradingView')"
             />
           </div>
         </div>
       </template>
-    </DashboardCard>
+    </MoleculeCard>
 
     <div class="flex flex-col gap-4">
       <NuxtLinkLocale
@@ -111,8 +114,8 @@ const services = ref([
           transition: { duration: 500, delay: idx * 50 },
         }"
       >
-        <SVG :name="service.svg" class="w-8 h-8" />
-        <span v-text="service.name" />
+        <AtomSVG :name="service.svg" class="w-8 h-8" />
+        <AtomText :text="service.name" />
       </NuxtLinkLocale>
     </div>
   </div>

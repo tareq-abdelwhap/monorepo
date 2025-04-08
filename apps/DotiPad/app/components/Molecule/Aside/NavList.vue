@@ -53,7 +53,7 @@ const localPath = useLocalePath();
         ]"
         active-class="!text-white"
       >
-        <SVG
+        <AtomSVG
           :name="svg!"
           class="w-5 h-5"
           :active="localPath({ path: route }) === $route.fullPath"

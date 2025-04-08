@@ -15,22 +15,22 @@
 
       <div class="flex gap-10 text-nun-sm">
         <div class="flex flex-col gap-4">
-          <span v-text="$t('footer.careers')" />
-          <span v-text="$t('footer.aboutDotipad')" />
-          <span v-text="$t('footer.council')" />
-          <span v-text="$t('footer.applyForLaunchpad')" />
+          <AtomText :text="$t('footer.careers')" />
+          <AtomText :text="$t('footer.aboutDotipad')" />
+          <AtomText :text="$t('footer.council')" />
+          <AtomText :text="$t('footer.applyForLaunchpad')" />
         </div>
 
         <div class="flex flex-col gap-4">
-          <span v-text="$t('footer.termsAndCondition')" />
-          <span v-text="$t('footer.privacyPolicy')" />
-          <span v-text="$t('footer.documentation')" />
-          <span v-text="$t('footer.audits')" />
+          <AtomText :text="$t('footer.termsAndCondition')" />
+          <AtomText :text="$t('footer.privacyPolicy')" />
+          <AtomText :text="$t('footer.documentation')" />
+          <AtomText :text="$t('footer.audits')" />
         </div>
 
         <div class="flex flex-col gap-4">
-          <span v-text="$t('footer.documentation')" />
-          <span v-text="$t('footer.dotipadJs')" />
+          <AtomText :text="$t('footer.documentation')" />
+          <AtomText :text="$t('footer.dotipadJs')" />
         </div>
       </div>
     </div>

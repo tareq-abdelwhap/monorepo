@@ -22,7 +22,7 @@ const walletStore = useWalletStore();
   >
     <!-- Social Media Icons -->
     <div class="flex items-center gap-4">
-      <SVG
+      <AtomSVG
         v-for="{ name, svg } in socialMediaIcons"
         :key="name"
         :name="svg"
@@ -38,8 +38,12 @@ const walletStore = useWalletStore();
         :initial="{ opacity: 0, x: 20 }"
         :enter="{ opacity: 1, x: 0, transition: { duration: 500, delay: 500 } }"
       >
-        <SVG :name="networkStore.getSelectedNetwork().svg" class="w-6 h-6" />
-        <span>{{ networkStore.getSelectedNetwork().shortName }}</span>
+        <AtomSVG
+          :name="networkStore.getSelectedNetwork().svg"
+          class="w-6 h-6"
+        />
+
+        <AtomText :text="networkStore.getSelectedNetwork().shortName" />
       </AtomButton>
 
       <AtomButton
@@ -62,23 +66,20 @@ const walletStore = useWalletStore();
               'bg-gradient-3 bg-clip-text text-transparent',
             ]"
           >
-            <span
-              v-text="
-                useNumberFormat(
-                  walletStore.getSelectedWallet()?.balance || 0,
-                  false
-                )
+            <AtomText
+              :text="
+                useNumberFormat(walletStore.getSelectedWallet().balance, false)
               "
             />
-            <span v-text="walletStore.getSelectedWallet()?.shortName" />
+            <AtomText :text="walletStore.getSelectedWallet().shortName" />
           </div>
 
-          <span v-text="'|'" />
+          <AtomText :text="'|'" />
 
-          <span
-            v-text="
+          <AtomText
+            :text="
               useShortenText(
-                walletStore.getSelectedWallet()?.token || ''
+                walletStore.getSelectedWallet().token
               ).toUpperCase()
             "
           />
@@ -111,15 +112,15 @@ const walletStore = useWalletStore();
               ]
             "
           >
-            <SVG :name="network.svg" class="w-10 h-10" />
-            <span
+            <AtomSVG :name="network.svg" class="w-10 h-10" />
+            <AtomText
               :class="[
                 'text-nun-h6 font-bold',
                 networkStore.getSelectedNetwork().shortName ===
                   network.shortName &&
                   'bg-gradient-3 bg-clip-text text-transparent',
               ]"
-              v-text="network.name"
+              :text="network.name"
             />
           </div>
         </div>
@@ -148,15 +149,15 @@ const walletStore = useWalletStore();
               () => [walletStore.setSelectedWallet(wallet.shortName), close()]
             "
           >
-            <SVG :name="wallet.svg" class="w-10 h-10" />
-            <span
+            <AtomSVG :name="wallet.svg" class="w-10 h-10" />
+            <AtomText
               :class="[
                 'text-nun-h6 font-bold',
                 walletStore.getSelectedWallet()?.shortName ===
                   wallet.shortName &&
                   'bg-gradient-3 bg-clip-text text-transparent',
               ]"
-              v-text="wallet.name"
+              :text="wallet.name"
             />
           </div>
         </div>

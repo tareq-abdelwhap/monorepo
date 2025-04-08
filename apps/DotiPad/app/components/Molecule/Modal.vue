@@ -62,11 +62,9 @@ const swap = async (fn: () => void) => {
       <!-- Modal Header -->
       <div class="flex items-center justify-between">
         <slot name="header">
-          <AtomHeader
-            :level="5"
-            class="text-nun-h5 font-bold"
-            v-text="header"
-          />
+          <AtomHeader :level="5" class="text-nun-h5 font-bold">
+            {{ header }}
+          </AtomHeader>
         </slot>
 
         <AtomIcon

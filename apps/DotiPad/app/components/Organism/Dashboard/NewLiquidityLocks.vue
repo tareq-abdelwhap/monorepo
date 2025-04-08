@@ -50,9 +50,9 @@ const newLiquidityLocks = ref([
 <template>
   <div class="flex flex-col gap-6">
     <!-- Header -->
-    <h6
+    <AtomHeader
+      :level="6"
       class="text-nun-h6 font-bold"
-      v-text="$t('dashboard.newLiquidityLocks.title')"
       v-motion
       :initial="{ opacity: 0, y: -20 }"
       :visible="{
@@ -60,10 +60,12 @@ const newLiquidityLocks = ref([
         y: 0,
         transition: { duration: 100 },
       }"
-    />
+    >
+      {{ $t('dashboard.newLiquidityLocks.title') }}
+    </AtomHeader>
 
     <!-- Cards -->
-    <DashboardCard
+    <MoleculeCard
       v-motion
       :initial="{ opacity: 0, x: -20 }"
       :visible="{ opacity: 1, x: 0, transition: { duration: 500 } }"
@@ -80,7 +82,7 @@ const newLiquidityLocks = ref([
               !idx && 'text-start',
             ]"
           >
-            <span class="text-nun-regular font-bold" v-text="header.title" />
+            <AtomText class="text-nun-regular font-bold" :text="header.title" />
           </div>
 
           <!-- Body -->
@@ -96,28 +98,28 @@ const newLiquidityLocks = ref([
                 v-if="header.name === 'view'"
                 class="!bg-neutral-gray-22"
               >
-                <span
+                <AtomText
                   class="bg-gradient-3 bg-clip-text text-transparent"
-                  v-text="$t('view')"
+                  :text="$t('view')"
                 />
               </AtomButton>
 
-              <span
+              <AtomText
                 v-else-if="typeof item[header.name] === 'string'"
                 :class="['text-nun-sm', !idx && 'font-bold']"
-                v-text="item[header.name]"
+                :text="item[header.name]"
               />
 
               <div v-else class="flex flex-col">
-                <span class="text-nun-sm" v-text="item[header.name][0]" />
+                <AtomText class="text-nun-sm" :text="item[header.name][0]" />
                 <div class="flex items-center gap-1 justify-end">
                   <AtomPieChart
                     :percentage="item[header.name][1]"
                     class="w-4 h-4"
                   />
-                  <span
+                  <AtomText
                     class="text-nun-sx text-success-green-5"
-                    v-text="`${item[header.name][1]}%`"
+                    :text="`${item[header.name][1]}%`"
                   />
                 </div>
               </div>
@@ -128,16 +130,17 @@ const newLiquidityLocks = ref([
 
       <template #footer>
         <div class="flex items-center justify-center gap-2">
-          <span
+          <AtomText
             class="text-nun-sm font-bold bg-gradient-3 bg-clip-text text-transparent"
-            v-text="$t('viewAll')"
+            :text="$t('viewAll')"
           />
-          <span
-            class="icon-[material-symbols--keyboard-arrow-right] rtl:rotate-180 w-6 h-6 bg-gradient-3 bg-clip-content text-transparent"
+          <AtomIcon
+            name="icon-[material-symbols--keyboard-arrow-right]"
+            class="rtl:rotate-180 w-6 h-6 bg-gradient-3 bg-clip-content text-transparent"
           />
         </div>
       </template>
-    </DashboardCard>
+    </MoleculeCard>
   </div>
 </template>
 

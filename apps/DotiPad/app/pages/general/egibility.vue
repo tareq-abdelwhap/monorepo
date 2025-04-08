@@ -3,25 +3,25 @@ const walletStore = useWalletStore();
 </script>
 
 <template>
-  <LayoutPage>
+  <OrganismPage>
     <template #header>
-      <h4 class="text-nun-h4">
+      <AtomHeader :level="4" class="text-nun-h4">
         {{ $t('egibility.status') }}:
-        <span
+        <AtomText
           v-if="!!walletStore.getSelectedWallet()"
           class="text-success-green-6"
-          v-text="$t('egibility.eligible')"
+          :text="$t('egibility.eligible')"
         />
-        <span
+        <AtomText
           v-else
           class="text-error-red-6"
-          v-text="$t('egibility.notEligible')"
+          :text="$t('egibility.notEligible')"
         />
-      </h4>
+      </AtomHeader>
     </template>
 
     <div class="flex flex-col gap-14">
-      <DashboardCard
+      <MoleculeCard
         class="!w-fit"
         v-motion
         :initial="{ opacity: 0, x: 20 }"
@@ -29,9 +29,9 @@ const walletStore = useWalletStore();
       >
         <div class="flex flex-col gap-10">
           <div class="flex flex-col gap-4 z-0">
-            <span
+            <AtomText
               class="text-nun-h6"
-              v-text="$t('egibility.howToGetWhitelisted')"
+              :text="$t('egibility.howToGetWhitelisted')"
             />
 
             <AtomButton
@@ -42,58 +42,58 @@ const walletStore = useWalletStore();
 
           <div class="flex gap-10">
             <div class="flex flex-col gap-4">
-              <span
+              <AtomText
                 class="text-nun-h6"
-                v-text="$t('egibility.tokenEquivalence')"
+                :text="$t('egibility.tokenEquivalence')"
               />
 
               <div class="flex flex-col gap-2">
-                <span
+                <AtomText
                   class="text-neutral-gray-8"
-                  v-text="`1 LP (Uniswap) = 100 DOT`"
+                  :text="`1 LP (Uniswap) = 100 DOT`"
                 />
-                <span
+                <AtomText
                   class="text-neutral-gray-8"
-                  v-text="`1 LP (PancakeSwap) = 20 DOT`"
+                  :text="`1 LP (PancakeSwap) = 20 DOT`"
                 />
               </div>
             </div>
 
             <div class="flex flex-col gap-4">
-              <span
+              <AtomText
                 class="text-nun-h6"
-                v-text="$t('egibility.noCoolDownPeriod')"
+                :text="$t('egibility.noCoolDownPeriod')"
               />
 
               <div class="flex flex-col gap-2">
-                <span
+                <AtomText
                   class="text-neutral-gray-8"
-                  v-text="`Wallets with balance >= 30,000 DOT`"
+                  :text="`Wallets with balance >= 30,000 DOT`"
                 />
-                <span
+                <AtomText
                   class="text-neutral-gray-8"
-                  v-text="`To bypass the cool down period hold 30,000+ DOT`"
+                  :text="`To bypass the cool down period hold 30,000+ DOT`"
                 />
               </div>
             </div>
           </div>
         </div>
-      </DashboardCard>
+      </MoleculeCard>
 
       <div class="flex flex-col gap-6">
         <div class="flex flex-col gap-1">
-          <span
+          <AtomText
             class="text-nun-sm text-neutral-gray-8"
-            v-text="$t('egibility.lastCheckedAt', { at: new Date() })"
+            :text="$t('egibility.lastCheckedAt', { at: new Date() })"
           />
-          <span
+          <AtomText
             class="font-bold"
-            v-text="$t('egibility.lastCheckedAbout', { about: `20 hours ago` })"
+            :text="$t('egibility.lastCheckedAbout', { about: `20 hours ago` })"
           />
         </div>
 
         <div class="flex flex-wrap gap-6">
-          <DashboardCard
+          <MoleculeCard
             class="!w-fit min-w-80"
             v-for="(_, idx) in 4"
             v-motion
@@ -106,29 +106,30 @@ const walletStore = useWalletStore();
           >
             <div class="flex flex-col gap-6">
               <div class="flex flex-col gap-2">
-                <span class="text-neutral-gray-8" v-text="`Your DOT Holding`" />
-                <span
+                <AtomText
                   class="text-neutral-gray-8"
-                  v-text="`(on Ethereum chain)`"
+                  :text="`Your DOT Holding`"
+                />
+                <AtomText
+                  class="text-neutral-gray-8"
+                  :text="`(on Ethereum chain)`"
                 />
               </div>
 
-              <span
+              <AtomText
                 class="text-nun-h5 font-bold bg-gradient-3 bg-clip-text text-transparent"
-                v-text="
-                  `${
-                    !!walletStore.getSelectedWallet()
-                      ? useNumberFormat(3557.528, false)
-                      : 0
-                  } DOT`
-                "
+                :text="`${
+                  !!walletStore.getSelectedWallet()
+                    ? useNumberFormat(3557.528, false)
+                    : 0
+                } DOT`"
               />
             </div>
-          </DashboardCard>
+          </MoleculeCard>
         </div>
       </div>
     </div>
-  </LayoutPage>
+  </OrganismPage>
 </template>
 
 <style scoped></style>

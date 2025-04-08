@@ -21,12 +21,12 @@ const createAccount = ref({ username: '' });
 </script>
 
 <template>
-  <LayoutPage :header="$t('menu.general.account')">
+  <OrganismPage :header="$t('menu.general.account')">
     <div class="flex flex-col gap-12">
       <div class="flex flex-col gap-4 z-0">
-        <span
+        <AtomText
           class="text-nun-sm text-neutral-gray-8"
-          v-text="$t('account.notLoggedIn')"
+          :text="$t('account.notLoggedIn')"
           v-motion
           :initial="{ opacity: 0, x: -20 }"
           :visible="{ opacity: 1, x: 0, transition: { duration: 500 } }"
@@ -39,15 +39,15 @@ const createAccount = ref({ username: '' });
           :initial="{ opacity: 0, y: 20 }"
           :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
         >
-          <span
+          <AtomText
             class="bg-gradient-3 bg-clip-text text-transparent"
-            v-text="$t('account.login')"
+            :text="$t('account.login')"
           />
         </AtomButton>
       </div>
 
       <div class="grid grid-cols-2 gap-6">
-        <DashboardCard
+        <MoleculeCard
           v-motion
           :initial="{ opacity: 0, x: -20 }"
           :visible="{ opacity: 1, x: 0, transition: { duration: 500 } }"
@@ -56,8 +56,9 @@ const createAccount = ref({ username: '' });
             <!-- Wallet Info -->
             <div class="flex items-center gap-3">
               <!-- wallet icon -->
-              <span
-                class="icon-[material-symbols--account-balance-wallet-outline] w-12 h-12"
+              <AtomIcon
+                name="icon-[material-symbols--account-balance-wallet-outline]"
+                class="w-12 h-12"
               />
 
               <div
@@ -65,39 +66,40 @@ const createAccount = ref({ username: '' });
                 class="flex flex-col gap-1"
               >
                 <div class="flex items-center gap-1">
-                  <span
+                  <AtomText
                     class="text-neutral-gray-8"
-                    v-text="
+                    :text="
                       useShortenText(
-                        walletStore.getSelectedWallet()?.token || ''
+                        walletStore.getSelectedWallet().token
                       ).toUpperCase()
                     "
                   />
 
-                  <span
-                    class="icon-[material-symbols--content-copy-outline-rounded] w-5 h-5 cursor-pointer"
-                    @click="
-                      () => copy(walletStore.getSelectedWallet()?.token || '')
-                    "
+                  <AtomIcon
+                    name="icon-[material-symbols--content-copy-outline-rounded]"
+                    class="w-5 h-5 cursor-pointer"
+                    @click="() => copy(walletStore.getSelectedWallet().token)"
                   />
                 </div>
 
                 <div class="flex items-center gap-3">
-                  <SVG
-                    :name="walletStore.getSelectedWallet()?.svg!"
+                  <AtomSVG
+                    :name="walletStore.getSelectedWallet().svg"
                     class="w-5 h-5"
                   />
 
                   <div class="flex items-center gap-1">
-                    <span
-                      v-text="
+                    <AtomText
+                      :text="
                         useNumberFormat(
-                          walletStore.getSelectedWallet()?.balance || 0,
+                          walletStore.getSelectedWallet().balance,
                           false
                         )
                       "
                     />
-                    <span v-text="walletStore.getSelectedWallet()?.shortName" />
+                    <AtomText
+                      :text="walletStore.getSelectedWallet().shortName"
+                    />
                   </div>
                 </div>
               </div>
@@ -109,28 +111,28 @@ const createAccount = ref({ username: '' });
             >
               <div class="flex items-center gap-5">
                 <AtomImage src="/imgs/logo.png" class="w-12 h-1w-12" />
-                <span
+                <AtomText
                   class="text-nun-h6 font-bold"
-                  v-text="'DOT'.toUpperCase()"
+                  :text="'DOT'.toUpperCase()"
                 />
               </div>
 
               <div class="grid grid-cols-4 gap-2">
-                <span
+                <AtomText
                   class="text-nun-sm text-neutral-gray-8"
-                  v-text="$t('account.balance')"
+                  :text="$t('account.balance')"
                 />
-                <span
+                <AtomText
                   class="text-nun-sm text-neutral-gray-5"
-                  v-text="`ETH: ${10} DOT`"
+                  :text="`ETH: ${10} DOT`"
                 />
-                <span
+                <AtomText
                   class="text-nun-sm text-neutral-gray-5"
-                  v-text="`BSC: ${150} DOT`"
+                  :text="`BSC: ${150} DOT`"
                 />
-                <span
+                <AtomText
                   class="text-nun-sm text-neutral-gray-5"
-                  v-text="`xDai: ${10} DOT`"
+                  :text="`xDai: ${10} DOT`"
                 />
               </div>
             </div>
@@ -141,66 +143,66 @@ const createAccount = ref({ username: '' });
             >
               <div class="flex items-center gap-5">
                 <AtomImage src="/imgs/logo2.png" class="w-12 h-1w-12" />
-                <span
+                <AtomText
                   class="text-nun-h6 font-bold"
-                  v-text="'IPAD'.toUpperCase()"
+                  :text="'IPAD'.toUpperCase()"
                 />
               </div>
 
               <div class="grid grid-cols-4 gap-2">
-                <span
+                <AtomText
                   class="text-nun-sm text-neutral-gray-8"
-                  v-text="$t('account.balance')"
+                  :text="$t('account.balance')"
                 />
-                <span
+                <AtomText
                   class="text-nun-sm text-neutral-gray-5"
-                  v-text="`ETH: ${0} IPAD`"
+                  :text="`ETH: ${0} IPAD`"
                 />
-                <span
+                <AtomText
                   class="text-nun-sm text-neutral-gray-5"
-                  v-text="`BSC: ${80} IPAD`"
+                  :text="`BSC: ${80} IPAD`"
                 />
-                <span
+                <AtomText
                   class="text-nun-sm text-neutral-gray-5"
-                  v-text="`xDai: ${2} IPAD`"
+                  :text="`xDai: ${2} IPAD`"
                 />
               </div>
             </div>
           </div>
-        </DashboardCard>
+        </MoleculeCard>
 
-        <DashboardCard
+        <MoleculeCard
           v-motion
           :initial="{ opacity: 0, x: 20 }"
           :visible="{ opacity: 1, x: 0, transition: { duration: 500 } }"
         >
           <div class="flex flex-col gap-6 py-3 px-1 h-full">
-            <span v-text="$t('account.yourTokenLock')" />
+            <AtomText :text="$t('account.yourTokenLock')" />
 
             <div class="flex items-center justify-between">
-              <span
+              <AtomText
                 class="text-nun-sm"
-                v-text="$t('tokens', 0).toLowerCase()"
+                :text="$t('tokens', 0).toLowerCase()"
               />
 
-              <span class="icon-[material-symbols--refresh-rounded] w-6 h-6" />
+              <AtomIcon name="icon-[material-symbols--refresh-rounded]" />
             </div>
 
             <div class="flex items-center justify-center h-full">
-              <span
+              <AtomText
                 class="text-nun-sm text-neutral-gray-8"
-                v-text="$t('account.noTokenLocks')"
+                :text="$t('account.noTokenLocks')"
               />
             </div>
           </div>
-        </DashboardCard>
+        </MoleculeCard>
       </div>
     </div>
 
     <MoleculeModal v-model="showLoginModal" :header="$t('account.login')">
       <template #default="{ close, swap }">
         <div class="flex flex-col items-center gap-14">
-          <span class="icon-[material-symbols--person] w-16 h-16" />
+          <AtomIcon name="icon-[material-symbols--person]" class="w-16 h-16" />
 
           <MoleculeTabs :tabs="tabs" @tab-change="tab => (activeTab = tab)" />
 
@@ -212,9 +214,9 @@ const createAccount = ref({ username: '' });
             :visible="{ opacity: 1, y: 0 }"
             @click="close"
           >
-            <span
+            <AtomText
               class="bg-gradient-3 bg-clip-text text-transparent"
-              v-text="$t('account.signMessage')"
+              :text="$t('account.signMessage')"
             />
           </AtomButton>
 
@@ -261,15 +263,15 @@ const createAccount = ref({ username: '' });
           </form>
 
           <div class="flex items-center gap-6 self-start">
-            <span
+            <AtomText
               class="text-nun-sm text-neutral-gray-8"
-              v-text="$t('account.dontHaveAccount')"
+              :text="$t('account.dontHaveAccount')"
             />
 
-            <span
+            <AtomText
               class="bg-gradient-3 bg-clip-text text-transparent font-bold cursor-pointer"
               @click="() => swap(() => (showCreateAccountModal = true))"
-              v-text="$t('account.createAccount')"
+              :text="$t('account.createAccount')"
             />
           </div>
         </div>
@@ -300,28 +302,28 @@ const createAccount = ref({ username: '' });
           >
             <div class="flex items-center gap-5">
               <AtomImage src="/imgs/logo.png" class="w-12 h-1w-12" />
-              <span
+              <AtomText
                 class="text-nun-h6 font-bold"
-                v-text="'DOT'.toUpperCase()"
+                :text="'DOT'.toUpperCase()"
               />
             </div>
 
             <div class="grid grid-cols-4 gap-2">
-              <span
+              <AtomText
                 class="text-nun-sm text-neutral-gray-8"
-                v-text="$t('account.balance')"
+                :text="$t('account.balance')"
               />
-              <span
+              <AtomText
                 class="text-nun-sm text-neutral-gray-5"
-                v-text="`ETH: ${10} DOT`"
+                :text="`ETH: ${10} DOT`"
               />
-              <span
+              <AtomText
                 class="text-nun-sm text-neutral-gray-5"
-                v-text="`BSC: ${150} DOT`"
+                :text="`BSC: ${150} DOT`"
               />
-              <span
+              <AtomText
                 class="text-nun-sm text-neutral-gray-5"
-                v-text="`xDai: ${10} DOT`"
+                :text="`xDai: ${10} DOT`"
               />
             </div>
           </div>
@@ -335,28 +337,28 @@ const createAccount = ref({ username: '' });
           >
             <div class="flex items-center gap-5">
               <AtomImage src="/imgs/logo2.png" class="w-12 h-1w-12" />
-              <span
+              <AtomText
                 class="text-nun-h6 font-bold"
-                v-text="'IPAD'.toUpperCase()"
+                :text="'IPAD'.toUpperCase()"
               />
             </div>
 
             <div class="grid grid-cols-4 gap-2">
-              <span
+              <AtomText
                 class="text-nun-sm text-neutral-gray-8"
-                v-text="$t('account.balance')"
+                :text="$t('account.balance')"
               />
-              <span
+              <AtomText
                 class="text-nun-sm text-neutral-gray-5"
-                v-text="`ETH: ${0} IPAD`"
+                :text="`ETH: ${0} IPAD`"
               />
-              <span
+              <AtomText
                 class="text-nun-sm text-neutral-gray-5"
-                v-text="`BSC: ${80} IPAD`"
+                :text="`BSC: ${80} IPAD`"
               />
-              <span
+              <AtomText
                 class="text-nun-sm text-neutral-gray-5"
-                v-text="`xDai: ${2} IPAD`"
+                :text="`xDai: ${2} IPAD`"
               />
             </div>
           </div>
@@ -371,21 +373,21 @@ const createAccount = ref({ username: '' });
           />
 
           <div class="flex items-center gap-6 self-start">
-            <span
+            <AtomText
               class="text-nun-sm text-neutral-gray-8"
-              v-text="$t('account.haveAccount')"
+              :text="$t('account.haveAccount')"
             />
 
-            <span
+            <AtomText
               class="bg-gradient-3 bg-clip-text text-transparent font-bold cursor-pointer"
               @click="() => swap(() => (showLoginModal = true))"
-              v-text="$t('account.login')"
+              :text="$t('account.login')"
             />
           </div>
         </div>
       </template>
     </MoleculeModal>
-  </LayoutPage>
+  </OrganismPage>
 </template>
 
 <style scoped></style>

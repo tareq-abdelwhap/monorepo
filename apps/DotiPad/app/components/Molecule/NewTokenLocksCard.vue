@@ -16,17 +16,20 @@ defineProps<{
 </script>
 
 <template>
-  <DashboardCard>
+  <MoleculeCard>
     <template #header>
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
-          <SVG :name="tokenLock.svg" class="w-8 h-8" />
-          <span class="text-nun-regular font-bold" v-text="tokenLock.title" />
+          <AtomSVG :name="tokenLock.svg" class="w-8 h-8" />
+          <AtomText
+            class="text-nun-regular font-bold"
+            :text="tokenLock.title"
+          />
         </div>
 
-        <span
+        <AtomText
           class="text-nun-sm text-neutral-gray-8"
-          v-text="tokenLock.subTitle"
+          :text="tokenLock.subTitle"
         />
       </div>
     </template>
@@ -35,15 +38,15 @@ defineProps<{
       <div class="grid grid-cols-2">
         <!-- Header -->
         <div class="text-start p-4 border-b border-neutral-gray-22">
-          <span
+          <AtomText
             class="text-nun-regular font-bold"
-            v-text="$t('dashboard.newTokenLocks.tokenName')"
+            :text="$t('dashboard.newTokenLocks.tokenName')"
           />
         </div>
         <div class="text-end p-4 border-b border-neutral-gray-22">
-          <span
+          <AtomText
             class="text-nun-regular font-bold"
-            v-text="$t('dashboard.newTokenLocks.tokenLocked')"
+            :text="$t('dashboard.newTokenLocks.tokenLocked')"
           />
         </div>
 
@@ -56,28 +59,31 @@ defineProps<{
                 :src="`/imgs/svg/${item.svg}`"
                 :alt="item.svg"
               />
-              <SVG v-else :name="item.svg" />
+              <AtomSVG v-else :name="item.svg" />
 
               <div class="flex flex-col">
-                <span class="text-nun-sm font-bold" v-text="item.tokenName" />
-                <span
+                <AtomText
+                  class="text-nun-sm font-bold"
+                  :text="item.tokenName"
+                />
+                <AtomText
                   class="text-nun-sx text-neutral-gray-8"
-                  v-text="item.tokenSubName"
+                  :text="item.tokenSubName"
                 />
               </div>
             </div>
           </div>
           <div class="text-end py-2 px-4 border-b border-neutral-gray-22">
             <div class="flex flex-col">
-              <span class="text-nun-sm" v-text="item.tokenLocked" />
+              <AtomText class="text-nun-sm" :text="item.tokenLocked" />
               <div class="flex items-center gap-1 justify-end">
                 <AtomPieChart
                   :percentage="item.tokenLockedPercentage"
                   class="w-4 h-4"
                 />
-                <span
+                <AtomText
                   class="text-nun-sx text-success-green-5"
-                  v-text="`${item.tokenLockedPercentage}%`"
+                  :text="`${item.tokenLockedPercentage}%`"
                 />
               </div>
             </div>
@@ -88,16 +94,17 @@ defineProps<{
 
     <template #footer>
       <div class="flex items-center justify-center gap-2">
-        <span
+        <AtomText
           class="text-nun-sm font-bold bg-gradient-3 bg-clip-text text-transparent"
-          v-text="$t('viewAll')"
+          :text="$t('viewAll')"
         />
-        <span
-          class="icon-[material-symbols--keyboard-arrow-right] rtl:rotate-180 w-6 h-6 bg-gradient-3 bg-clip-content text-transparent"
+        <AtomIcon
+          name="icon-[material-symbols--keyboard-arrow-right]"
+          class="rtl:rotate-180 w-6 h-6 bg-gradient-3 bg-clip-content text-transparent"
         />
       </div>
     </template>
-  </DashboardCard>
+  </MoleculeCard>
 </template>
 
 <style scoped></style>

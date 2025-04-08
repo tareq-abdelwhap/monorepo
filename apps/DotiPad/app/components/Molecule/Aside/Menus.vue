@@ -18,8 +18,6 @@ const changeMenu = (menu?: any) => {
   setActiveBG();
 };
 
-// watch(() => route.fullPath, changeMenu);
-
 const SVGHover = ref();
 onMounted(() => {
   menuRef.value?.forEach((item: any) => {
@@ -61,8 +59,7 @@ const isRTL = computed(() => localeProperties.value.dir === 'rtl');
         transition: { duration: 300, delay: idx * 50 },
       }"
     >
-      <!-- :active="[getActiveMenu?.menu, SVGHover].includes(menu)" -->
-      <SVG
+      <AtomSVG
         :name="svg"
         class="w-7 h-7"
         :active="[...route.fullPath.split('/'), SVGHover].includes(menu)"

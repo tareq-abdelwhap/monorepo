@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <LayoutPage :header="$t('menu.general.whitelisted')">
+  <OrganismPage :header="$t('menu.general.whitelisted')">
     <div
       class="w-11/12 mx-auto"
       v-motion
@@ -289,7 +289,7 @@
       facere magnam quae itaque, explicabo totam hic iusto vel voluptatum
       quaerat doloribus impedit.
     </div>
-  </LayoutPage>
+  </OrganismPage>
 </template>
 
 <style scoped></style>
