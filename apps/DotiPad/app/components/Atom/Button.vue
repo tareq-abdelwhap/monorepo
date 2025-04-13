@@ -24,6 +24,7 @@ const isDisabled = computed(() => {
   <button
     ref="btn"
     :class="[
+      'cursor-pointer',
       'px-4 py-3 rounded-xl',
       'flex items-center justify-center gap-2',
       'text-nun-sm font-bold',

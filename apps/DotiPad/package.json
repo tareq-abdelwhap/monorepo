@@ -20,7 +20,7 @@
   "devDependencies": {
     "@iconify-json/circle-flags": "^1.2.6",
     "@iconify-json/material-symbols": "^1.2.16",
-    "@iconify/tailwind": "^1.2.0",
+    "@iconify/tailwind4": "^1.0.6",
     "jiti": "^2.4.2"
   }
 }

@@ -10,6 +10,7 @@ import { useViteExtendConfig } from "./composables/useViteExtendConfigHook";
 import { useNitroConfig } from "./composables/useNitroConfig";
 import { useInstallI18n } from "./composables/useInstallI18n";
 import { useInstallTailwindcss } from "./composables/useInstallTailwindcss";
+import fs from "node:fs";
 
 export default defineNuxtModule<ModuleOptions>({
   meta: { name: "nuxt-starter", configKey: "starter" },
@@ -41,12 +42,18 @@ export default defineNuxtModule<ModuleOptions>({
   // hooks: {},
 
   setup: async (_options, _nuxt) => {
+    const moduleResolver = createResolver(import.meta.url);
     const rootResolver = createResolver(_nuxt.options.rootDir);
     const starterPath = rootResolver.resolve("starter");
 
     /* Module Options from Runtime Config */
     const { runtimeConfig } = _nuxt.options;
     const starter = useRuntimeOptions(runtimeConfig.public.starter, _options);
+
+    if (!fs.existsSync(rootResolver.resolve(starterPath))) {
+      fs.mkdirSync(rootResolver.resolve(starterPath), { recursive: true });
+      console.log(`Created ${rootResolver.resolve(starterPath)} directory`);
+    }
 
     /* Drop Console & Manual Chunks */
     useViteExtendConfig(_nuxt, starter);
@@ -60,13 +67,11 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     /* TailwindCSS */
-    if (!hasNuxtModule("@nuxtjs/tailwindcss")) {
-      await useInstallTailwindcss(
-        _nuxt,
-        { rootResolver, starterPath },
-        starter.tailwindcss
-      );
-    }
+    await useInstallTailwindcss(
+      _nuxt,
+      { moduleResolver, rootResolver, starterPath },
+      starter.tailwindcss
+    );
 
     /* Pinia Store */
     if (!hasNuxtModule("@pinia/nuxt")) {

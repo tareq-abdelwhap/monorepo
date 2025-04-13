@@ -141,9 +141,9 @@ const walletStore = useWalletStore();
               'py-4 px-6 rounded-2xl',
               'bg-neutral-gray-23',
               'cursor-pointer',
+              'hover:gradient-outline-3',
               walletStore.getSelectedWallet()?.shortName === wallet.shortName &&
                 'gradient-outline-3',
-              'hover:gradient-outline-3',
             ]"
             @click="
               () => [walletStore.setSelectedWallet(wallet.shortName), close()]

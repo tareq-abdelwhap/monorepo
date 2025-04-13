@@ -1,61 +1,47 @@
 import type { Nuxt } from "nuxt/schema";
 import type { ModuleOptions } from "../types";
-import { installModule, type Resolver } from "@nuxt/kit";
-// import tailwindcss from "@tailwindcss/vite";
+import type { Resolver } from "@nuxt/kit";
+import tailwindcss from "@tailwindcss/vite";
+import { resolve } from "node:path";
+import fs from "node:fs";
 
 export const useInstallTailwindcss = async (
   nuxt: Nuxt,
   resolver: {
+    moduleResolver: Resolver;
     rootResolver: Resolver;
     starterPath: string;
   },
   tailwindcssConfig: ModuleOptions["tailwindcss"]
 ) => {
-  /* Tailwind 3 */
-  if (
-    tailwindcssConfig.config &&
-    typeof tailwindcssConfig.config === "string"
-  ) {
-    tailwindcssConfig.config = resolver.rootResolver.resolve(
-      resolver.starterPath,
-      tailwindcssConfig.config
-    );
-  }
+  nuxt.options.alias ||= {};
+  nuxt.options.alias["@nuxt-starter/tailwincss"] = resolve(
+    __dirname,
+    "./../runtime/tailwind.css"
+  );
 
   if (tailwindcssConfig.cssPath && Array.isArray(tailwindcssConfig.cssPath)) {
-    tailwindcssConfig.cssPath = [
-      resolver.rootResolver.resolve(
-        resolver.starterPath,
-        tailwindcssConfig.cssPath[0]
-      ),
-      tailwindcssConfig.cssPath[1],
-    ];
+    // check if file exists and if not create it with createFileSync
+    const cssPath = resolver.rootResolver.resolve(
+      resolver.starterPath,
+      tailwindcssConfig.cssPath[0]
+    );
+
+    // check if file exists
+    if (!fs.existsSync(cssPath)) {
+      // create the file with the default content
+      fs.writeFileSync(cssPath, "@import '@nuxt-starter/tailwincss';\n");
+
+      console.log(
+        `Created ${cssPath} file. Please add your tailwindcss styles here.`
+      );
+    }
+
+    nuxt.options.css.push(cssPath);
   }
 
-  await installModule("@nuxtjs/tailwindcss", tailwindcssConfig);
-
-  /* Tailwind 4 */
-  // if (
-  //   tailwindcssConfig.config &&
-  //   typeof tailwindcssConfig.config === "string"
-  // ) {
-  //   tailwindcssConfig.config = resolver.rootResolver.resolve(
-  //     resolver.starterPath,
-  //     tailwindcssConfig.config
-  //   );
-  // }
-
-  // if (tailwindcssConfig.cssPath && Array.isArray(tailwindcssConfig.cssPath)) {
-  //   nuxt.options.css.push(
-  //     resolver.rootResolver.resolve(
-  //       resolver.starterPath,
-  //       tailwindcssConfig.cssPath[0]
-  //     )
-  //   );
-  // }
-
-  // nuxt.hook("vite:extendConfig", (config) => {
-  //   config.plugins ||= [];
-  //   config.plugins.push(tailwindcss());
-  // });
+  nuxt.hook("vite:extendConfig", (config) => {
+    config.plugins ||= [];
+    config.plugins.push(tailwindcss());
+  });
 };
