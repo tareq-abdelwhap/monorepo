@@ -17,11 +17,13 @@ export const useInstallTailwindcss = async (
   nuxt.options.alias ||= {};
   nuxt.options.alias["@nuxt-starter/tailwincss"] = resolve(
     __dirname,
-    "./../runtime/tailwind.css"
+    "./../src/runtime/tailwind.css"
   );
+  console.log(__dirname);
 
   if (tailwindcssConfig.cssPath && Array.isArray(tailwindcssConfig.cssPath)) {
     // check if file exists and if not create it with createFileSync
+
     const cssPath = resolver.rootResolver.resolve(
       resolver.starterPath,
       tailwindcssConfig.cssPath[0]

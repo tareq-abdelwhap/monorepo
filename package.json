@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "prepare:starter": "pnpm -F nuxt-starter dev:prepare"
+    "prepare:starter": "pnpm -F nuxt-starter dev:prepare",
+    "dev:doti": "pnpm --filter doti-pad dev"
   },
   "keywords": [],
   "author": "",
