@@ -2,25 +2,26 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: false },
-  modules: [
-    '@pinia/nuxt',
-    '@vueuse/nuxt',
-    '@nuxtjs/color-mode',
-  ],
+  nitro: {
+    preset: 'netlify',
+  },
+  modules: ['@pinia/nuxt', '@vueuse/nuxt', '@nuxtjs/color-mode'],
   app: {
     head: {
       title: 'Finance Tracker',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: 'Personal Finance Tracker for CAD to EGP Management' },
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Personal Finance Tracker for CAD to EGP Management',
+        },
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'theme-color', content: '#0F766E' },
       ],
-      link: [
-        { rel: 'icon', type: 'image/png', href: '/icon.png' }
-      ]
-    }
+      link: [{ rel: 'icon', type: 'image/png', href: '/icon.png' }],
+    },
   },
   pwa: {
     manifest: {
@@ -32,7 +33,7 @@ export default defineNuxtConfig({
       background_color: '#f8fafc',
       display: 'standalone',
       orientation: 'portrait',
-      start_url: '/'
+      start_url: '/',
     },
     workbox: {
       runtimeCaching: [
@@ -43,15 +44,15 @@ export default defineNuxtConfig({
             cacheName: 'google-fonts',
             expiration: {
               maxEntries: 10,
-              maxAgeSeconds: 60 * 60 * 24 * 30
-            }
-          }
-        }
-      ]
-    }
+              maxAgeSeconds: 60 * 60 * 24 * 30,
+            },
+          },
+        },
+      ],
+    },
   },
   colorMode: {
-    classSuffix: ''
+    classSuffix: '',
   },
   css: ['~/assets/css/main.css'],
   postcss: {
@@ -60,4 +61,4 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-})
+});
