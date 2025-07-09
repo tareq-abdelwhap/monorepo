@@ -31,7 +31,7 @@ jobs:
         run: pnpm -F nuxt-starter install && pnpm -F nuxt-starter build
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm -F ${{ matrix.app.name }} install
 
       - name: Deploy to Netlify
         id: netlify_deploy
