@@ -14,6 +14,7 @@ jobs:
           - name: new-portfolio
             path: apps/new-portfolio
             site_id_secret: NETLIFY_SITE_ID_PORTFOLIO_V2
+            node-version: [20]
           # - name: another-app
           #   path: apps/another-app
           #   site_id_secret: NETLIFY_SITE_ID_OTHER
@@ -22,19 +23,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Use Node.js ${{ matrix.app.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.app.node-version }}
+          cache: 'pnpm'
+
       - name: Enable Corepack and install pnpm
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
 
-      # - name: Install dependencies
-      #   run: pnpm install --ignore-scripts
+      - name: Install dependencies
+        run: pnpm install
 
-      - name: Install dependencies (app + module)
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
-          pnpm --filter ./modules/nuxt-starter... --filter ./apps/new-portfolio... install
+      # - name: Install dependencies (app + module)
+      #   run: |
+      #     corepack enable
+      #     corepack prepare pnpm@latest --activate
+      #     pnpm --filter ./modules/nuxt-starter... --filter ./apps/new-portfolio... install
 
       - name: Build ${{ matrix.app.name }}
         run: |
