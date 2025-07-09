@@ -5,11 +5,11 @@ import {
   hasNuxtModule,
   installModule,
 } from "@nuxt/kit";
-import { useRuntimeOptions } from "./composables/useRuntimeOptions";
-import { useViteExtendConfig } from "./composables/useViteExtendConfigHook";
-import { useNitroConfig } from "./composables/useNitroConfig";
-import { useInstallI18n } from "./composables/useInstallI18n";
-import { useInstallTailwindcss } from "./composables/useInstallTailwindcss";
+import { useRuntimeOptions } from "./runtime/composables/useRuntimeOptions";
+import { useViteExtendConfig } from "./runtime/composables/useViteExtendConfigHook";
+import { useNitroConfig } from "./runtime/composables/useNitroConfig";
+import { useInstallI18n } from "./runtime/composables/useInstallI18n";
+import { useInstallTailwindcss } from "./runtime/composables/useInstallTailwindcss";
 import fs from "node:fs";
 
 export default defineNuxtModule<ModuleOptions>({
@@ -33,9 +33,18 @@ export default defineNuxtModule<ModuleOptions>({
     pinia: {},
 
     i18n: {
+      locales: [
+        {
+          code: "en",
+          language: "en-US",
+          name: "English",
+          file: "en.ts",
+        },
+      ],
+
       restructureDir: "i18n",
       langDir: "locales",
-      vueI18n: "starter.i18n.config.ts",
+      vueI18n: "starter/i18n.config.ts",
     },
   },
 
@@ -81,10 +90,10 @@ export default defineNuxtModule<ModuleOptions>({
       await installModule("pinia");
     }
 
-    /* I18n */
-    if (!hasNuxtModule("@nuxtjs/i18n")) {
-      await useInstallI18n(_nuxt, { rootResolver, starterPath }, starter.i18n);
-    }
+    /* I18n */ // There is an Error in @nuxtjs/i18n
+    // if (!hasNuxtModule("@nuxtjs/i18n")) {
+    //   await useInstallI18n(_nuxt, { rootResolver, starterPath }, starter.i18n);
+    // }
 
     /* Color Mode */
     /* Comming Soon */

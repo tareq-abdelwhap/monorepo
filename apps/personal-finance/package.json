@@ -1,30 +1,31 @@
 {
-  "name": "finance-tracker",
+  "name": "personal-finance",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "HOST=0.0.0.0 nuxt dev",
+    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "ionic:build": "npm run generate",
+    "ionic:serve": "npm run dev"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.5.1",
-    "@vueuse/core": "^10.7.2",
-    "@vueuse/nuxt": "^10.7.2",
-    "chart.js": "^4.4.1",
-    "date-fns": "^3.3.1",
-    "localforage": "^1.10.0",
-    "nuxt": "^3.13.0",
-    "pinia": "^2.1.7",
-    "vue-chartjs": "^5.3.0"
+    "@capacitor/android": "^7.2.0",
+    "@capacitor/core": "^7.2.0",
+    "@capacitor/dialog": "^7.0.1",
+    "@nuxtjs/ionic": "0.18.0",
+    "@nuxtjs/supabase": "1.5.0",
+    "chart.js": "^4.4.9",
+    "nuxt": "^3.17.1",
+    "nuxt-starter": "workspace:^",
+    "vue": "^3.5.13",
+    "vue-chartjs": "^5.3.2",
+    "vue-router": "^4.5.1"
   },
+  "version": "0.0.0",
   "devDependencies": {
-    "@nuxtjs/color-mode": "^3.3.2",
-    "@nuxtjs/pwa": "^3.3.5",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.33",
-    "tailwindcss": "^3.4.1"
+    "@capacitor/cli": "^7.2.0"
   }
 }

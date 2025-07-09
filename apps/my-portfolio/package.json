@@ -16,7 +16,7 @@
     "@vueuse/core": "^11.1.0",
     "@vueuse/motion": "^2.2.5",
     "@vueuse/nuxt": "^11.1.0",
-    "nuxt": "^3.13.0",
+    "nuxt": "^3.16.0",
     "nuxt-swiper": "^1.2.2",
     "vue": "latest",
     "vue-router": "latest"
