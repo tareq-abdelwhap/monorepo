@@ -11,8 +11,8 @@ importers:
   apps/DotiPad:
     dependencies:
       '@intlify/shared':
-        specifier: 10.0.5
-        version: 10.0.5
+        specifier: 9.4.0
+        version: 9.4.0
       '@nuxtjs/i18n':
         specifier: ^8.5.6
         version: 8.5.6(magicast@0.3.5)(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
@@ -1243,10 +1243,6 @@ packages:
     resolution: {integrity: sha512-vcyCLiVRN628U38c3PbahrhbbXrckrM9zpy0KZVlDk2Z0OnGwv8uQNNXP3twwGtfLsCf4gu3ci6FMIZnPaqZsw==}
     engines: {node: '>= 16'}
 
-  '@intlify/shared@10.0.5':
-    resolution: {integrity: sha512-bmsP4L2HqBF6i6uaMqJMcFBONVjKt+siGluRq4Ca4C0q7W2eMaVZr8iCgF9dKbcVXutftkC7D6z2SaSMmLiDyA==}
-    engines: {node: '>= 16'}
-
   '@intlify/shared@10.0.7':
     resolution: {integrity: sha512-oeoq0L5+5P4ShXa6jBQcx+BT+USe3MjX0xJexZO1y7rfDJdwZ9+QP3jO4tcS1nxhBYYdjvFTqe4bmnLijV0GxQ==}
     engines: {node: '>= 16'}
@@ -1257,6 +1253,10 @@ packages:
 
   '@intlify/shared@9.14.4':
     resolution: {integrity: sha512-P9zv6i1WvMc9qDBWvIgKkymjY2ptIiQ065PjDv7z7fDqH3J/HBRBN5IoiR46r/ujRcU7hCuSIZWvCAFCyuOYZA==}
+    engines: {node: '>= 16'}
+
+  '@intlify/shared@9.4.0':
+    resolution: {integrity: sha512-AFqymip2kToqA0B6KZPg5jSrdcVHoli9t/VhGKE2iiMq9utFuMoGdDC/JOCIZgwxo6aXAk86QyU2XtzEoMuZ6A==}
     engines: {node: '>= 16'}
 
   '@intlify/unplugin-vue-i18n@3.0.1':
@@ -9054,7 +9054,7 @@ snapshots:
   '@intlify/bundle-utils@7.5.1(vue-i18n@9.14.4(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
       '@intlify/message-compiler': 9.14.4
-      '@intlify/shared': 9.14.4
+      '@intlify/shared': 9.4.0
       acorn: 8.15.0
       escodegen: 2.1.0
       estree-walker: 2.0.2
@@ -9111,18 +9111,18 @@ snapshots:
       '@intlify/shared': 9.14.4
       source-map-js: 1.2.1
 
-  '@intlify/shared@10.0.5': {}
-
   '@intlify/shared@10.0.7': {}
 
   '@intlify/shared@11.1.9': {}
 
   '@intlify/shared@9.14.4': {}
 
+  '@intlify/shared@9.4.0': {}
+
   '@intlify/unplugin-vue-i18n@3.0.1(rollup@4.44.2)(vue-i18n@9.14.4(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
       '@intlify/bundle-utils': 7.5.1(vue-i18n@9.14.4(vue@3.5.17(typescript@5.8.3)))
-      '@intlify/shared': 9.14.4
+      '@intlify/shared': 9.4.0
       '@rollup/pluginutils': 5.2.0(rollup@4.44.2)
       '@vue/compiler-sfc': 3.5.17
       debug: 4.4.1(supports-color@10.0.0)
