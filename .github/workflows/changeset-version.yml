@@ -44,7 +44,7 @@ jobs:
       - name: setup pnpm config
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
 
-      - run: pnpm install
+      - run: pnpm --filter ./modules/starter... install
 
       - name: Create versions PR & prepare publish
         id: changesets
