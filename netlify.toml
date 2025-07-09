@@ -1,6 +1,6 @@
 [build]
   base = "apps/new-portfolio"
-  publish = "apps/new-portfolio/dist"
+  publish = ".output/public"
   command = "pnpm --filter new-portfolio... run build"
 
 [functions]
