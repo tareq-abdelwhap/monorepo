@@ -56,9 +56,9 @@ jobs:
           pnpm --filter ./${{ matrix.app.path }}... run build
 
       - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
+        uses: netlify/actions/cli@v2
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets[matrix.app.site_id_secret] }}
         with:
-          args: deploy
+          args: deploy --prod
