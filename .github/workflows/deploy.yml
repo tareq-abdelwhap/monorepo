@@ -24,6 +24,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Check for changes in app
+        id: check_changes
+        run: |
+          echo "Checking changes in path: ${{ matrix.app.path }}"
+          if git diff --quiet HEAD^ HEAD -- ${{ matrix.app.path }}; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
