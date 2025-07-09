@@ -10,6 +10,9 @@ importers:
 
   apps/DotiPad:
     dependencies:
+      '@intlify/shared':
+        specifier: 10.0.5
+        version: 10.0.5
       '@nuxtjs/i18n':
         specifier: ^8.5.6
         version: 8.5.6(magicast@0.3.5)(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
@@ -1238,6 +1241,10 @@ packages:
 
   '@intlify/message-compiler@9.14.4':
     resolution: {integrity: sha512-vcyCLiVRN628U38c3PbahrhbbXrckrM9zpy0KZVlDk2Z0OnGwv8uQNNXP3twwGtfLsCf4gu3ci6FMIZnPaqZsw==}
+    engines: {node: '>= 16'}
+
+  '@intlify/shared@10.0.5':
+    resolution: {integrity: sha512-bmsP4L2HqBF6i6uaMqJMcFBONVjKt+siGluRq4Ca4C0q7W2eMaVZr8iCgF9dKbcVXutftkC7D6z2SaSMmLiDyA==}
     engines: {node: '>= 16'}
 
   '@intlify/shared@10.0.7':
@@ -9103,6 +9110,8 @@ snapshots:
     dependencies:
       '@intlify/shared': 9.14.4
       source-map-js: 1.2.1
+
+  '@intlify/shared@10.0.5': {}
 
   '@intlify/shared@10.0.7': {}
 
