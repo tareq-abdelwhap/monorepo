@@ -15,12 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: setup caching
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ env.PNPM_CACHE_FOLDER }}
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -31,7 +31,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       # - name: setup node.js
-      #   uses: actions/setup-node@v2
+      #   uses: actions/setup-node@v4
       #   with:
       #     node-version: 16.x
       #     cache: 'pnpm'
