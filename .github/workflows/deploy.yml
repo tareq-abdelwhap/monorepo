@@ -38,7 +38,7 @@ jobs:
           corepack prepare pnpm@latest --activate
 
       - name: Prepare starter module
-        run: pnpm -F nuxt-starter dev:prepare
+        run: pnpm -F nuxt-starter install && pnpm -F nuxt-starter dev:prepare
 
       - name: Install dependencies
         run: pnpm install

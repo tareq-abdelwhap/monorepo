@@ -8,7 +8,7 @@ import {
 import { useRuntimeOptions } from "./runtime/composables/useRuntimeOptions";
 import { useViteExtendConfig } from "./runtime/composables/useViteExtendConfigHook";
 import { useNitroConfig } from "./runtime/composables/useNitroConfig";
-import { useInstallI18n } from "./runtime/composables/useInstallI18n";
+// import { useInstallI18n } from "./runtime/composables/useInstallI18n";
 import { useInstallTailwindcss } from "./runtime/composables/useInstallTailwindcss";
 import fs from "node:fs";
 
