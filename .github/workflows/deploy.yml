@@ -11,10 +11,6 @@ jobs:
     strategy:
       matrix:
         app:
-          - name: my-portfolio
-            path: apps/my-portfolio
-            site_id: 982a59e1-0ec4-4798-adf2-2177890cd318
-            node-version: 22
           - name: new-portfolio
             path: apps/new-portfolio
             site_id: 6633f892-4bf5-4663-b8fa-8c8a2c61c61f
@@ -22,6 +18,7 @@ jobs:
           - name: DotiPad
             path: apps/DotiPad
             site_id: b8c6c847-c081-47b3-ae42-e7c9f32b4f4e
+            node-version: 22
 
     steps:
       - name: Checkout code
