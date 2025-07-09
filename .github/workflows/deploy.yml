@@ -69,7 +69,4 @@ jobs:
       - name: Deploy to Netlify
         id: netlify_deploy
         run: |
-          netlify deploy \
-            --dir ${{ matrix.app.path }}dist \
-            --site ${{ secrets[matrix.app.site_id_secret] }} \
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify deploy --dir ${{ matrix.app.path }}/dist --site ${{ secrets[matrix.app.site_id_secret] }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
