@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "netlify": "npx netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_SITE_ID --dir=${{ matrix.app.path }}/.output/public --prod"
+    "netlify": "npx netlify deploy --dir dist --site ${{ secrets[matrix.app.site_id_secret] }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}"
   },
   "dependencies": {
     "@nuxt/icon": "1.15.0",
