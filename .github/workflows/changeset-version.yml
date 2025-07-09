@@ -52,9 +52,9 @@ jobs:
         # if: github.ref == 'refs/heads/master'
         with:
           # Custom versioning script in package.json
-          version: pnpm ci:version
+          version: pnpm --filter nuxt-starter ci:version
           # Custom versioning script in package.json
-          publish: pnpm ci:publish
+          publish: pnpm --filter nuxt-starter ci:publish
           # Messages
           commit: 'chore(deploy): Release'
           title: 'chore(deploy): Release'
