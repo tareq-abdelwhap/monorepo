@@ -40,7 +40,7 @@ jobs:
       #     corepack prepare pnpm@latest --activate
 
       - name: Prepare starter module
-        run: pnpm -F nuxt-starter install && pnpm -F nuxt-starter dev:prepare
+        run: pnpm -F nuxt-starter install && pnpm -F nuxt-starter build
 
       - name: Install dependencies
         run: pnpm install
@@ -59,6 +59,7 @@ jobs:
         id: netlify_deploy
         run: |
           npx netlify deploy \
+            --prod \
             --cwd ${{ matrix.app.path }} \
             --dir ${{ matrix.app.path }}/dist \
             --site ${{ secrets[matrix.app.site_id_secret] }} \
