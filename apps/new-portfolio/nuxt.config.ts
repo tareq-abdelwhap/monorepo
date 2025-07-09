@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
 
   modules: [
-    'nuxt-starter',
+    '../../modules/starter',
     '@vueuse/nuxt',
     'nuxt-swiper',
     '@vueuse/motion/nuxt',

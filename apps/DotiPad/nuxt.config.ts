@@ -2,7 +2,7 @@ export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
   compatibilityDate: '2024-11-01',
 
-  modules: ['nuxt-starter', '@vueuse/motion/nuxt'],
+  modules: ['../../modules/starter', '@vueuse/motion/nuxt'],
 
   starter: {
     googleFonts: {
