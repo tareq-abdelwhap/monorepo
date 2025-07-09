@@ -4,56 +4,36 @@ on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         app:
+          - name: my-portfolio
+            path: apps/my-portfolio
+            site_id_secret: 982a59e1-0ec4-4798-adf2-2177890cd318
+            node-version: 22
           - name: new-portfolio
             path: apps/new-portfolio
-            site_id_secret: NETLIFY_SITE_ID_PORTFOLIO_V2
+            site_id_secret: 6633f892-4bf5-4663-b8fa-8c8a2c61c61f
             node-version: 22
-          # - name: another-app
-          #   path: apps/another-app
-          #   site_id_secret: NETLIFY_SITE_ID_OTHER
+          - name: DotiPad
+            path: apps/DotiPad
+            site_id_secret: b8c6c847-c081-47b3-ae42-e7c9f32b4f4e
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 22
-
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-
-      # - name: Install Netlify
-      #   run: npm install netlify-cli@22.2.2 -g
-
-      # - name: Enable Corepack and install pnpm
-      #   run: |
-      #     corepack enable
-      #     corepack prepare pnpm@latest --activate
 
       - name: Prepare starter module
         run: pnpm -F nuxt-starter install && pnpm -F nuxt-starter build
 
       - name: Install dependencies
         run: pnpm install
-
-      # - name: Install dependencies (app + module)
-      #   run: |
-      #     corepack enable
-      #     corepack prepare pnpm@latest --activate
-      #     pnpm --filter ./modules/nuxt-starter... --filter ./apps/new-portfolio... install
-
-      # - name: Build ${{ matrix.app.name }}
-      #   run: |
-      #     pnpm --filter ./${{ matrix.app.path }}... run build
 
       - name: Deploy to Netlify
         id: netlify_deploy
@@ -62,5 +42,5 @@ jobs:
             --prod \
             --cwd ${{ matrix.app.path }} \
             --dir ${{ matrix.app.path }}/dist \
-            --site ${{ secrets[matrix.app.site_id_secret] }} \
+            --site ${{ matrix.app.site_id }} \
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
