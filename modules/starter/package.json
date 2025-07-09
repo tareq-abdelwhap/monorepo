@@ -35,8 +35,8 @@
     "test:watch": "vitest watch",
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit",
     "analyze": "nuxt analyze",
-    "ci:version": "pnpm changelog && pnpx changeset version && pnpm install --no-frozen-lockfile && git add .",
-    "ci:publish": "pnpm publish -r --no-git-checks && pnpm changeset tag",
+    "ci:version": "pnpx changeset version && pnpm install && git add .",
+    "ci:publish": "pnpm publish --no-git-checks && pnpm changeset tag",
     "changeset-publish": "changeset publish",
     "changeset-tag": "changeset tag"
   },
