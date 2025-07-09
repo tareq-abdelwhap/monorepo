@@ -23,21 +23,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 22
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-      # - name: Install pnpm
-      #   uses: pnpm/action-setup@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Install Netlify
         run: npm install netlify-cli@22.2.2 -g
 
-      # - name: Enable Corepack and install pnpm
-      #   run: |
-      #     corepack enable
-      #     corepack prepare pnpm@latest --activate
+      - name: Enable Corepack and install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
 
       - name: Prepare starter module
         run: pnpm -F nuxt-starter install && pnpm -F nuxt-starter dev:prepare
