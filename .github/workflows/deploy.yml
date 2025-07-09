@@ -40,6 +40,6 @@ jobs:
             --prod \
             --cwd ${{ matrix.app.path }} \
             --dir ${{ matrix.app.path }}/dist \
-            --functions ${{ matrix.app.path }}/.netlify/functions-internal \
+            --functions .netlify/functions-internal \
             --site ${{ matrix.app.site_id }} \
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
