@@ -2,6 +2,8 @@ export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
   compatibilityDate: '2024-11-01',
 
+  nitro: { preset: 'netlify' },
+
   modules: ['nuxt-starter', '@vueuse/motion/nuxt'],
 
   starter: {
