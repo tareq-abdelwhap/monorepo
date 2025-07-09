@@ -10,7 +10,6 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@intlify/shared": "9.14.4",
     "@nuxtjs/i18n": "^8.5.6",
     "@vueuse/core": "^13.0.0",
     "@vueuse/motion": "^3.0.3",
