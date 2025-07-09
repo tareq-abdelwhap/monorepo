@@ -34,7 +34,7 @@ jobs:
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
-          pnpm --filter ./apps/new-portfolio... --filter ./modules/nuxt-starter... install
+          pnpm --filter ./modules/nuxt-starter... --filter ./apps/new-portfolio... install
 
       - name: Build ${{ matrix.app.name }}
         run: |
