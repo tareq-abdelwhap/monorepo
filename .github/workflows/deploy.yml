@@ -30,12 +30,11 @@ jobs:
       # - name: Install dependencies
       #   run: pnpm install --ignore-scripts
 
-      - name: Install only what we need
+      - name: Install dependencies (app + module)
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
-          pnpm install --ignore-scripts
-          pnpm --filter ./${{ matrix.app.name }}... run prepare
+          pnpm --filter ./apps/new-portfolio... --filter ./modules/nuxt-starter... install
 
       - name: Build ${{ matrix.app.name }}
         run: |
