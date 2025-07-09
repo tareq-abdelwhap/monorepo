@@ -45,9 +45,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build the app
-        run: pnpm --filter ${{ matrix.app.name }} build
-
       - name: Deploy to Netlify
         id: netlify_deploy
         run: |
