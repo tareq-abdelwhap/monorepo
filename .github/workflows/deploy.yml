@@ -31,6 +31,9 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
+      - name: Install Netlify
+        run: npm install netlify-cli@22.2.2 -g
+
       - name: Enable Corepack and install pnpm
         run: |
           corepack enable
@@ -52,13 +55,21 @@ jobs:
         run: |
           pnpm --filter ./${{ matrix.app.path }}... run build
 
+      # - name: Deploy to Netlify
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets[matrix.app.site_id_secret] }}
+      #   run: |
+      #     npx netlify deploy \
+      #       --auth $NETLIFY_AUTH_TOKEN \
+      #       --site $NETLIFY_SITE_ID \
+      #       --dir ${{ matrix.app.path }}/.output/public \
+      #       --prod
+
       - name: Deploy to Netlify
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets[matrix.app.site_id_secret] }}
+        id: netlify_deploy
         run: |
-          npx netlify deploy \
-            --auth $NETLIFY_AUTH_TOKEN \
-            --site $NETLIFY_SITE_ID \
-            --dir=${{ matrix.app.path }}/.output/public \
-            --prod
+          netlify deploy \
+            --dir ${{ matrix.app.path }}dist \
+            --site ${{ secrets[matrix.app.site_id_secret] }} \
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
