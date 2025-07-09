@@ -66,10 +66,6 @@ jobs:
       #       --dir ${{ matrix.app.path }}/.output/public \
       #       --prod
 
-      # - name: Deploy to Netlify
-      #   id: netlify_deploy
-      #   run: |
-      #     netlify deploy --dir ${{ matrix.app.path }}/dist --site ${{ secrets[matrix.app.site_id_secret] }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
       - name: Deploy to Netlify
         id: netlify_deploy
-        run: pnpm --filter ./${{ matrix.app.path }}... run netlify
+        run: netlify deploy --dir ${{ matrix.app.path }}/.output/public --site ${{ secrets[matrix.app.site_id_secret] }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}

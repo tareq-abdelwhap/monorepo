@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   future: { compatibilityVersion: 4 },
 
-  nitro: { preset: 'netlify' },
+  // nitro: { preset: 'netlify' },
 
   modules: [
     'nuxt-starter',
