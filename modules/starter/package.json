@@ -2,9 +2,15 @@
   "name": "nuxt-starter",
   "version": "1.0.0",
   "description": "A Nuxt Starter Module",
-  "repository": "your-org/nuxt-starter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tareq-abdelwhap/monorepo/modules/nuxt-starter"
+  },
   "license": "MIT",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
@@ -17,9 +23,9 @@
   "files": [
     "dist"
   ],
-  "private": true,
   "scripts": {
     "prepack": "nuxt-module-build build",
+    "build": "nuxt-module-build build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
