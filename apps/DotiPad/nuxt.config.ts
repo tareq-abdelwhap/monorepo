@@ -19,14 +19,14 @@ export default defineNuxtConfig({
         code: 'en',
         language: 'en-US',
         name: 'English',
-        file: 'en.ts',
+        file: './en.ts',
         dir: 'ltr',
       },
       {
         code: 'ar',
         language: 'ar-EG',
         name: 'العربية',
-        file: 'ar.ts',
+        file: './ar.ts',
         dir: 'rtl',
       },
     ],
@@ -36,5 +36,6 @@ export default defineNuxtConfig({
     bundle: {
       optimizeTranslationDirective: false,
     },
+    vueI18n: './i18n/i18n.config.ts',
   },
 });
