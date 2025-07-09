@@ -11,8 +11,8 @@ importers:
   apps/DotiPad:
     dependencies:
       '@intlify/shared':
-        specifier: 9.4.0
-        version: 9.4.0
+        specifier: 9.10.0
+        version: 9.10.0
       '@nuxtjs/i18n':
         specifier: ^8.5.6
         version: 8.5.6(magicast@0.3.5)(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
@@ -1251,12 +1251,12 @@ packages:
     resolution: {integrity: sha512-H/83xgU1l8ox+qG305p6ucmoy93qyjIPnvxGWRA7YdOoHe1tIiW9IlEu4lTdsOR7cfP1ecrwyflQSqXdXBacXA==}
     engines: {node: '>= 16'}
 
-  '@intlify/shared@9.14.4':
-    resolution: {integrity: sha512-P9zv6i1WvMc9qDBWvIgKkymjY2ptIiQ065PjDv7z7fDqH3J/HBRBN5IoiR46r/ujRcU7hCuSIZWvCAFCyuOYZA==}
+  '@intlify/shared@9.10.0':
+    resolution: {integrity: sha512-nAIr9kM9gjSKKCZ6/MOAgOxBJw0XF5EhnVB/l1ifUfGWtt9wVYVQLmtQD85lwXkesPnVR+p8T+wX1T828aArSg==}
     engines: {node: '>= 16'}
 
-  '@intlify/shared@9.4.0':
-    resolution: {integrity: sha512-AFqymip2kToqA0B6KZPg5jSrdcVHoli9t/VhGKE2iiMq9utFuMoGdDC/JOCIZgwxo6aXAk86QyU2XtzEoMuZ6A==}
+  '@intlify/shared@9.14.4':
+    resolution: {integrity: sha512-P9zv6i1WvMc9qDBWvIgKkymjY2ptIiQ065PjDv7z7fDqH3J/HBRBN5IoiR46r/ujRcU7hCuSIZWvCAFCyuOYZA==}
     engines: {node: '>= 16'}
 
   '@intlify/unplugin-vue-i18n@3.0.1':
@@ -9054,7 +9054,7 @@ snapshots:
   '@intlify/bundle-utils@7.5.1(vue-i18n@9.14.4(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
       '@intlify/message-compiler': 9.14.4
-      '@intlify/shared': 9.4.0
+      '@intlify/shared': 9.10.0
       acorn: 8.15.0
       escodegen: 2.1.0
       estree-walker: 2.0.2
@@ -9115,14 +9115,14 @@ snapshots:
 
   '@intlify/shared@11.1.9': {}
 
-  '@intlify/shared@9.14.4': {}
+  '@intlify/shared@9.10.0': {}
 
-  '@intlify/shared@9.4.0': {}
+  '@intlify/shared@9.14.4': {}
 
   '@intlify/unplugin-vue-i18n@3.0.1(rollup@4.44.2)(vue-i18n@9.14.4(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
       '@intlify/bundle-utils': 7.5.1(vue-i18n@9.14.4(vue@3.5.17(typescript@5.8.3)))
-      '@intlify/shared': 9.4.0
+      '@intlify/shared': 9.10.0
       '@rollup/pluginutils': 5.2.0(rollup@4.44.2)
       '@vue/compiler-sfc': 3.5.17
       debug: 4.4.1(supports-color@10.0.0)
