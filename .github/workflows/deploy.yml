@@ -23,13 +23,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 22
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      # - name: Install pnpm
+      #   uses: pnpm/action-setup@v4
 
       # - name: Install Netlify
       #   run: npm install netlify-cli@22.2.2 -g
@@ -60,6 +60,6 @@ jobs:
         run: |
           npx netlify deploy \
             --cwd ${{ matrix.app.path }} \
-            --dir ${{ matrix.app.path }}\dist \
+            --dir ${{ matrix.app.path }}/dist \
             --site ${{ secrets[matrix.app.site_id_secret] }} \
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
