@@ -3,5 +3,7 @@
   publish = "apps/new-portfolio/dist"
   command = "pnpm --filter new-portfolio... run generate"
 
-[functions]
-  directory = "apps/new-portfolio/.output/functions"
+[[redirects]]
+  from = "/*"
+  to = "index.html"
+  status = 200
