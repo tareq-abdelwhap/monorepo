@@ -33,5 +33,8 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
     lazy: true,
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
 });
