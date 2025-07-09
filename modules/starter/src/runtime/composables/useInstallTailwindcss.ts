@@ -2,8 +2,9 @@ import type { Nuxt } from "nuxt/schema";
 import type { ModuleOptions } from "../../types";
 import type { Resolver } from "@nuxt/kit";
 import tailwindcss from "@tailwindcss/vite";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 import fs from "node:fs";
+import { fileURLToPath } from "node:url";
 
 export const useInstallTailwindcss = async (
   nuxt: Nuxt,
@@ -14,6 +15,9 @@ export const useInstallTailwindcss = async (
   },
   tailwindcssConfig: ModuleOptions["tailwindcss"]
 ) => {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+
   nuxt.options.alias ||= {};
   nuxt.options.alias["@nuxt-starter/tailwincss"] = resolve(
     __dirname,

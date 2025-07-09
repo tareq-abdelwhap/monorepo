@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     compressPublicAssets: false,
   },
 
-  modules: ['../../../modules/starter', '@nuxtjs/ionic', '@nuxtjs/supabase'],
+  modules: ['nuxt-starter', '@nuxtjs/ionic', '@nuxtjs/supabase'],
 
   ionic: { css: { utilities: true } },
 
