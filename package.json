@@ -6,7 +6,12 @@
   "main": "index.js",
   "scripts": {
     "prepare:starter": "pnpm -F nuxt-starter dev:prepare",
-    "dev:doti": "pnpm --filter doti-pad dev"
+    "dev:doti": "pnpm --filter doti-pad dev",
+    "changeset": "changeset",
+    "ci:version": "pnpm changelog && pnpx changeset version && pnpm install --no-frozen-lockfile && git add .",
+    "ci:publish": "pnpm build-pkgs && git status && pnpm publish -r && pnpm changeset tag",
+    "changeset-publish": "changeset publish",
+    "changeset-tag": "changeset tag"
   },
   "keywords": [],
   "author": "",
