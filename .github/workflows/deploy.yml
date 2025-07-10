@@ -75,17 +75,17 @@ jobs:
         uses: pnpm/action-setup@v4
         if: steps.check_changes.outputs.changed == 'true'
 
-      - name: Install dependencies
-        # run pnpm install within the app directory by using the matrix path
-        run: pnpm -F ./${{ matrix.app.path }} install
-        if: steps.check_changes.outputs.changed == 'true'
-
       - name: Download starter module build (only if built this run)
         uses: actions/download-artifact@v4
         if: steps.check_changes.outputs.changed == 'true' && needs.prepare.outputs.cache-hit == 'false'
         with:
           name: starter-build
           path: modules/starter/dist
+
+      - name: Install dependencies
+        # run pnpm install within the app directory by using the matrix path
+        run: pnpm -F ./${{ matrix.app.path }} install
+        if: steps.check_changes.outputs.changed == 'true'
 
       - name: Deploy to Netlify
         id: netlify_deploy
