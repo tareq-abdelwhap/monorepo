@@ -12,15 +12,9 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     '@vueuse/motion/nuxt',
     '@nuxt/icon',
-    // '@nuxtjs/supabase',
   ],
 
   swiper: {
     bundled: true, // makes all effects (like fade) available
   },
-
-  // supabase: {
-  //   redirect: false, // disable login redirects
-  //   useSsrCookies: false, // disable SSR and cookie auth
-  // },
 });

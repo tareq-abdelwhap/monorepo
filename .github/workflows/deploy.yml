@@ -6,7 +6,42 @@ on:
       - main
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+
+    outputs:
+      cache-hit: ${{ steps.cache-starter.outputs.cache-hit }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Cache starter build
+        id: cache-starter
+        uses: actions/cache@v4
+        with:
+          path: modules/starter/dist
+          key: starter-${{ hashFiles('modules/starter/package.json', 'modules/starter/pnpm-lock.yaml', 'modules/starter/src/**') }}
+
+      - name: Build starter module (if cache missed)
+        if: steps.cache-starter.outputs.cache-hit != 'true'
+        run: |
+          pnpm -F nuxt-starter install
+          pnpm -F nuxt-starter build
+
+      - name: Upload built starter module
+        uses: actions/upload-artifact@v4
+        if: steps.cache-starter.outputs.cache-hit != 'true'
+        with:
+          name: starter-build
+          path: modules/starter/dist
+
   deploy:
+    needs: prepare
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -40,13 +75,16 @@ jobs:
         uses: pnpm/action-setup@v4
         if: steps.check_changes.outputs.changed == 'true'
 
-      - name: Prepare starter module
-        run: pnpm -F nuxt-starter install && pnpm -F nuxt-starter build
-        if: steps.check_changes.outputs.changed == 'true'
-
       - name: Install dependencies
         run: pnpm install
         if: steps.check_changes.outputs.changed == 'true'
+
+      - name: Download starter module build (only if built this run)
+        uses: actions/download-artifact@v4
+        if: steps.check_changes.outputs.changed == 'true' && needs.prepare.outputs.cache-hit == 'false'
+        with:
+          name: starter-build
+          path: modules/starter/dist
 
       - name: Deploy to Netlify
         id: netlify_deploy
