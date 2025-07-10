@@ -76,7 +76,8 @@ jobs:
         if: steps.check_changes.outputs.changed == 'true'
 
       - name: Install dependencies
-        run: pnpm install
+        # run pnpm install within the app directory by using the matrix path
+        run: pnpm -F ./${{ matrix.app.path }} install
         if: steps.check_changes.outputs.changed == 'true'
 
       - name: Download starter module build (only if built this run)
