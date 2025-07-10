@@ -51,7 +51,6 @@ export default defineNuxtModule<ModuleOptions>({
   // hooks: {},
 
   setup: async (_options, _nuxt) => {
-    const moduleResolver = createResolver(import.meta.url);
     const rootResolver = createResolver(_nuxt.options.rootDir);
     const starterPath = rootResolver.resolve("starter");
 
@@ -78,7 +77,7 @@ export default defineNuxtModule<ModuleOptions>({
     /* TailwindCSS */
     await useInstallTailwindcss(
       _nuxt,
-      { moduleResolver, rootResolver, starterPath },
+      { rootResolver, starterPath },
       starter.tailwindcss
     );
 

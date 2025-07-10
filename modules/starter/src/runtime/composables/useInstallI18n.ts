@@ -1,4 +1,5 @@
-import { installModule, type Resolver } from "@nuxt/kit";
+import { installModule } from "@nuxt/kit";
+import type { Resolver } from "@nuxt/kit";
 import type { ModuleOptions } from "../../types";
 import type { LocaleObject } from "@nuxtjs/i18n";
 import type { Nuxt } from "nuxt/schema";

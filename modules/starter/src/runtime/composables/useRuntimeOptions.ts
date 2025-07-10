@@ -1,4 +1,4 @@
-import type { ModuleOptions } from "../types";
+import type { ModuleOptions } from "@/src/types";
 import { defu } from "defu";
 
 export const useRuntimeOptions = (

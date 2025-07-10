@@ -86,6 +86,9 @@ importers:
       '@nuxt/icon':
         specifier: 1.15.0
         version: 1.15.0(magicast@0.3.5)(vite@6.3.5(@types/node@24.0.12)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
+      '@nuxtjs/supabase':
+        specifier: 1.5.0
+        version: 1.5.0
       '@vueuse/nuxt':
         specifier: 13.4.0
         version: 13.4.0(magicast@0.3.5)(nuxt@3.17.6(@netlify/blobs@9.1.6)(@parcel/watcher@2.5.1)(@types/node@24.0.12)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.1(jiti@2.4.2))(ioredis@5.6.1)(lightningcss@1.30.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.44.2)(terser@5.43.1)(typescript@5.8.3)(vite@6.3.5(@types/node@24.0.12)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
@@ -105,6 +108,12 @@ importers:
         specifier: ^4.5.1
         version: 4.5.1(vue@3.5.17(typescript@5.8.3))
     devDependencies:
+      '@iconify-json/devicon':
+        specifier: ^1.2.29
+        version: 1.2.29
+      '@iconify-json/logos':
+        specifier: ^1.2.4
+        version: 1.2.4
       netlify:
         specifier: ^22.2.2
         version: 22.2.2(@types/node@24.0.12)(db0@0.3.2)(ioredis@5.6.1)(picomatch@4.0.2)(rollup@4.44.2)
@@ -1154,6 +1163,12 @@ packages:
 
   '@iconify-json/circle-flags@1.2.6':
     resolution: {integrity: sha512-UR7hL1nxOFWDVlSTuAmssyAzm3U1PuE5CMVLlahuVsnm1l7Q2b29+jUaSLTDCFqrpvdeWifCmj4C6Ojkj+4uww==}
+
+  '@iconify-json/devicon@1.2.29':
+    resolution: {integrity: sha512-TXQD2J/A9XDegvL1dQMWFl3bUb7HBMomFCLpHYns4J8yfBy536Bm/uVGqcNIw/a5nZzkxh62Nb/JR2J1Uo4yMw==}
+
+  '@iconify-json/logos@1.2.4':
+    resolution: {integrity: sha512-XC4If5D/hbaZvUkTV8iaZuGlQCyG6CNOlaAaJaGa13V5QMYwYjgtKk3vPP8wz3wtTVNVEVk3LRx1fOJz+YnSMw==}
 
   '@iconify-json/material-symbols@1.2.29':
     resolution: {integrity: sha512-UUSrsl0gHF0GjAB9eZOpXrj7/v55ayMzo3QnMwUqP/FSfSkITKLR7CsBmUIFS8eEj8eRTfBNWA1yiIJR6UOdWg==}
@@ -9100,6 +9115,14 @@ snapshots:
   '@iarna/toml@2.2.5': {}
 
   '@iconify-json/circle-flags@1.2.6':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/devicon@1.2.29':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/logos@1.2.4':
     dependencies:
       '@iconify/types': 2.0.0
 

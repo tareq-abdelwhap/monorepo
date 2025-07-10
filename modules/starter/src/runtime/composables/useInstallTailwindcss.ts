@@ -1,5 +1,5 @@
 import type { Nuxt } from "nuxt/schema";
-import type { ModuleOptions } from "../../types";
+import type { ModuleOptions } from "@/src/types";
 import type { Resolver } from "@nuxt/kit";
 import tailwindcss from "@tailwindcss/vite";
 import { dirname, resolve } from "node:path";
@@ -9,7 +9,6 @@ import { fileURLToPath } from "node:url";
 export const useInstallTailwindcss = async (
   nuxt: Nuxt,
   resolver: {
-    moduleResolver: Resolver;
     rootResolver: Resolver;
     starterPath: string;
   },
@@ -47,6 +46,7 @@ export const useInstallTailwindcss = async (
 
   nuxt.hook("vite:extendConfig", (config) => {
     config.plugins ||= [];
+    // @ts-expect-error tailwindcss is a Vite plugin
     config.plugins.push(tailwindcss());
   });
 };
