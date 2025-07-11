@@ -113,11 +113,12 @@ const swiperChange = (event: CustomEvent) => {
   pathClick(swiperInstance.realIndex); // Update the path click based on swiper index
 };
 
-const lazyHydrate = (component: any) =>
-  defineAsyncComponent({
+const lazyHydrate = (component: any) => {
+  return defineAsyncComponent({
     loader: () => import(`@/components/${component}.vue`),
     hydrate: hydrateOnVisible(),
   });
+};
 </script>
 
 <template>
