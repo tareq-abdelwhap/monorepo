@@ -78,7 +78,6 @@ const paths = computed(() => {
 });
 
 /* Scroll Control */
-
 const onScroll = useDebounceFn((event: WheelEvent) => {
   const isDown = event.deltaY > 0;
 
