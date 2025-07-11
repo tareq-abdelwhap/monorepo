@@ -28,7 +28,6 @@ jobs:
           key: starter-${{ hashFiles('modules/starter/package.json', 'modules/starter/pnpm-lock.yaml', 'modules/starter/src/**') }}
 
       - name: Build starter module (if cache missed)
-        if: steps.cache-starter.outputs.cache-hit != 'true'
         run: |
           pnpm -F nuxt-starter install
           pnpm -F nuxt-starter build
