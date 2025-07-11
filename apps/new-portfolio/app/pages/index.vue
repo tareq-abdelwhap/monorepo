@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import { hydrateOnVisible } from 'vue';
+// @ts-expect-error missing types for vue-preloader
+import { VuePreloader } from 'vue-preloader';
+import '../node_modules/vue-preloader/dist/style.css';
 
 const layoutStore = useLayoutStore();
 const { currentSectionIndex, slides } = storeToRefs(layoutStore);
@@ -54,7 +57,7 @@ const paths = computed(() => {
   for (let i = 0; i < divisions; i += 1) {
     transforms.push(
       `rotate(${
-        i * degree + degree / parseFloat('2')
+        i * degree + degree / 2
       } ${midSvgSize} ${midSvgSize}) translate(${midSvgSize}, ${midSvgSize})`
     );
     textTransforms.push(
@@ -116,47 +119,53 @@ const lazyHydrate = (component: any) =>
     loader: () => import(`@/components/${component}.vue`),
     hydrate: hydrateOnVisible(),
   });
-
-onPrehydrate(() => {
-  console.log(window);
-});
 </script>
 
 <template>
   <div ref="container" class="relative h-screen w-full overflow-hidden">
-    <!-- <ClientOnly> -->
-    <swiper-container
-      ref="containerRef"
-      class="h-full w-full"
-      direction="vertical"
-      effect="fade"
-      :fade-effect="{ crossFade: true }"
-      :speed="800"
-      @swiperslidechange="swiperChange"
-    >
-      <swiper-slide v-for="(slide, idx) in slides" :key="idx">
-        <div
-          :class="[
-            'grid grid-cols-5',
-            'items-center justify-center h-full w-full after:content-[\'\'] after:absolute after:inset-0 after:bg-black/90',
-          ]"
-        >
-          <img
-            :src="slide.img"
-            :alt="slide.title"
-            :class="['absolute w-full h-full object-cover']"
-          />
+    <VuePreloader
+      background-color="#000000"
+      color="#ffffff"
+      transition-type="fade-up"
+      :loading-speed="25"
+      :transition-speed="800"
+      @loading-is-over="() => {}"
+      @transition-is-over="() => {}"
+    />
 
-          <div class="z-50 text-white col-start-2 col-span-full px-12">
-            <component
-              :is="lazyHydrate(slide.component)"
-              v-if="idx === currentSectionIndex"
+    <ClientOnly>
+      <swiper-container
+        ref="containerRef"
+        class="h-full w-full"
+        direction="vertical"
+        effect="fade"
+        :fade-effect="{ crossFade: true }"
+        :speed="800"
+        @swiperslidechange="swiperChange"
+      >
+        <swiper-slide v-for="(slide, idx) in slides" :key="idx">
+          <div
+            :class="[
+              'grid grid-cols-5',
+              'items-center justify-center h-full w-full after:content-[\'\'] after:absolute after:inset-0 after:bg-black/90',
+            ]"
+          >
+            <img
+              :src="slide.img"
+              :alt="slide.title"
+              :class="['absolute w-full h-full object-cover']"
             />
+
+            <div class="z-50 text-white col-start-2 col-span-full px-12">
+              <component
+                :is="lazyHydrate(slide.component)"
+                v-if="idx === currentSectionIndex"
+              />
+            </div>
           </div>
-        </div>
-      </swiper-slide>
-    </swiper-container>
-    <!-- </ClientOnly> -->
+        </swiper-slide>
+      </swiper-container>
+    </ClientOnly>
 
     <!-- Circle -->
     <div

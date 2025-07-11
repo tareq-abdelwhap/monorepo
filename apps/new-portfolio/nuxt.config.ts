@@ -12,9 +12,16 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     '@vueuse/motion/nuxt',
     '@nuxt/icon',
+    '@nuxtjs/supabase',
   ],
 
   swiper: {
     bundled: true, // makes all effects (like fade) available
+  },
+
+  vite: {
+    resolve: {
+      preserveSymlinks: true,
+    },
   },
 });

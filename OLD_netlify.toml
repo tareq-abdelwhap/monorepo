@@ -1,7 +1,0 @@
-[build]
-  base = "apps/new-portfolio"
-  publish = "apps/new-portfolio/dist"
-  command = "pnpm --filter new-portfolio... run build"
-
-[functions]
-  directory = ".netlify/functions-internal"
