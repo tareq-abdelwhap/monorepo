@@ -107,9 +107,6 @@ importers:
       vue:
         specifier: ^3.5.17
         version: 3.5.17(typescript@5.8.3)
-      vue-preloader:
-        specifier: ^1.1.4
-        version: 1.1.4(typescript@5.8.3)
       vue-router:
         specifier: ^4.5.1
         version: 4.5.1(vue@3.5.17(typescript@5.8.3))
@@ -8179,10 +8176,6 @@ packages:
     engines: {node: '>= 16'}
     peerDependencies:
       vue: ^3.0.0
-
-  vue-preloader@1.1.4:
-    resolution: {integrity: sha512-XvBS4rzhPDJ/Ya+FOMVfkMK4maZuEn6/CED/Y94NTJiKnU/ASikixB2dYGgHfYhosRPdAVXIZJfetWnPbHgdJA==}
-    engines: {node: '>=14'}
 
   vue-router@4.5.1:
     resolution: {integrity: sha512-ogAF3P97NPm8fJsE4by9dwSYtDwXIY1nFY9T6DyQnGHd1E2Da94w9JIolpe42LJGIl0DwOHBi8TcRPlPGwbTtw==}
@@ -18319,12 +18312,6 @@ snapshots:
       '@intlify/shared': 9.14.4
       '@vue/devtools-api': 6.6.4
       vue: 3.5.17(typescript@5.8.3)
-
-  vue-preloader@1.1.4(typescript@5.8.3):
-    dependencies:
-      vue: 3.5.17(typescript@5.8.3)
-    transitivePeerDependencies:
-      - typescript
 
   vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)):
     dependencies:
