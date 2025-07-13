@@ -1,8 +1,5 @@
 <script lang="ts" setup>
 import { hydrateOnVisible } from 'vue';
-// @ts-expect-error missing types for vue-preloader
-import { VuePreloader } from 'vue-preloader';
-import '../node_modules/vue-preloader/dist/style.css';
 
 const layoutStore = useLayoutStore();
 const { currentSectionIndex, slides } = storeToRefs(layoutStore);
@@ -122,16 +119,6 @@ const lazyHydrate = (component: any) =>
 
 <template>
   <div ref="container" class="relative h-screen w-full overflow-hidden">
-    <VuePreloader
-      background-color="#000000"
-      color="#ffffff"
-      transition-type="fade-up"
-      :loading-speed="25"
-      :transition-speed="800"
-      @loading-is-over="() => {}"
-      @transition-is-over="() => {}"
-    />
-
     <ClientOnly>
       <swiper-container
         ref="containerRef"

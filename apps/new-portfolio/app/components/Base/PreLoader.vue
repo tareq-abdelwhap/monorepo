@@ -1,34 +1,65 @@
+<script lang="ts" setup>
+const preLoader = useTemplateRef('pre-loader');
+const progress = ref(0);
+let animationFrame: number | null = null;
+let startTime: number;
+
+// Start progress animation immediately when setup runs (SSR-compatible)
+const duration = 800; // total time to go from 0 to 100
+
+const animateProgress = (target: number) => {
+  startTime = performance.now();
+  const startValue = progress.value;
+  const delta = target - startValue;
+
+  const tick = (now: number) => {
+    const elapsed = now - startTime;
+    const next = startValue + (elapsed / duration) * delta;
+    progress.value = Math.min(Math.round(next), target);
+
+    if (progress.value < target) {
+      animationFrame = requestAnimationFrame(tick);
+    } else if (target === 100) {
+      // Fade out once 100 is reached
+      preLoader.value?.classList.add('!opacity-0');
+    }
+  };
+
+  animationFrame = requestAnimationFrame(tick);
+};
+
+// Start at 0% as soon as component is initialized
+onBeforeMount(() => [(progress.value = 0), animateProgress(75)]);
+
+// Complete to 100% when mounted
+onMounted(() =>
+  setTimeout(() => {
+    if (animationFrame) cancelAnimationFrame(animationFrame);
+    animateProgress(100);
+  }, 800)
+);
+</script>
+
 <template>
-  <svg
-    width="80"
-    height="80"
-    viewBox="0 0 100 100"
-    class="animate-spin mx-auto text-indigo-500"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    stroke="currentColor"
+  <div
+    ref="pre-loader"
+    :class="[
+      'absolute inset-0 flex flex-col items-center justify-center bg-black z-[100] opacity-100 transition-opacity duration-500',
+    ]"
   >
-    <g transform="rotate(0 50 50)">
-      <path
-        d="M50 15 A35 35 0 0 1 85 50"
-        stroke-width="10"
-        stroke-linecap="round"
-      />
-    </g>
-    <text x="50%" y="95%" text-anchor="middle" fill="white" font-size="10">
-      Loading dev...
-    </text>
-  </svg>
+    <!-- Percentage Counter -->
+    <div class="text-white text-sm mb-2 tracking-wide">
+      {{ progress }} / 100
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="w-[80%] h-2 bg-white/10 rounded overflow-hidden">
+      <div
+        class="h-full bg-gradient-to-r from-transparent via-white/50 to-transparent transition-all"
+        :style="{ width: `${progress}%` }"
+      ></div>
+    </div>
+  </div>
 </template>
 
-<style scoped>
-.animate-spin {
-  animation: spin 1.2s linear infinite;
-}
-
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-</style>
+<style scoped></style>
