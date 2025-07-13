@@ -25,8 +25,11 @@ export default defineNuxtConfig({
     },
   },
 
-  // supabase: {
-  //   url: 'https://poimpuiwljywwvoxubrx.supabase.co',
-  //   key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvaW1wdWl3bGp5d3d2b3h1YnJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIwOTE1NDYsImV4cCI6MjA2NzY2NzU0Nn0.0jyYcktKm4XssBmK97yvoaZtHq7urvqWL-ViL4VYeVg',
-  // },
+  supabase: {
+    redirectOptions: {
+      login: '/login',
+      callback: '/callback',
+      exclude: ['/login', '/callback', '/'],
+    },
+  },
 });
