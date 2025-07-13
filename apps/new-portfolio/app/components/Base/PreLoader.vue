@@ -22,6 +22,9 @@ const animateProgress = (target: number) => {
     } else if (target === 100) {
       // Fade out once 100 is reached
       preLoader.value?.classList.add('!opacity-0');
+      setTimeout(() => {
+        preLoader.value?.classList.add('!hidden');
+      }, duration);
     }
   };
 
@@ -36,7 +39,7 @@ onMounted(() =>
   setTimeout(() => {
     if (animationFrame) cancelAnimationFrame(animationFrame);
     animateProgress(100);
-  }, 800)
+  }, duration)
 );
 </script>
 
