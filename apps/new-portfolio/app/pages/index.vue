@@ -1,88 +1,21 @@
 <script lang="ts" setup>
-const containerRef = ref(null);
+// logout from supabase
+const supabase = useSupabaseClient();
 
-const {
-  currentSectionIndex,
-  slides,
-  swiperChange,
-  svgSize,
-  paths,
-  pathClick,
-  hydratedComponents,
-} = await usePortfolioController(containerRef);
+const logout = async () => {
+  await supabase.auth.signOut();
+  navigateTo({ path: '/login' });
+};
 </script>
 
 <template>
-  <div ref="container" class="relative h-screen w-full overflow-hidden">
-    <ClientOnly>
-      <swiper-container
-        ref="containerRef"
-        class="h-full w-full"
-        direction="vertical"
-        effect="fade"
-        :fade-effect="{ crossFade: true }"
-        :speed="800"
-        @swiperslidechange="swiperChange"
-      >
-        <swiper-slide v-for="(slide, idx) in slides" :key="idx">
-          <div
-            :class="[
-              'grid grid-cols-5',
-              'items-center justify-center h-full w-full after:content-[\'\'] after:absolute after:inset-0 after:bg-black/90',
-            ]"
-          >
-            <img
-              :src="slide.img"
-              :alt="slide.title"
-              :class="['absolute w-full h-full object-cover']"
-            />
-
-            <div class="z-50 text-white col-start-2 col-span-full px-12">
-              <component
-                :is="hydratedComponents[idx]"
-                v-if="idx === currentSectionIndex"
-                :data="slide.data"
-              />
-            </div>
-          </div>
-        </swiper-slide>
-      </swiper-container>
-    </ClientOnly>
-
-    <!-- Circle -->
-    <div
-      :class="[
-        'absolute top-1/2 left-0 transform -translate-x-5/7 -translate-y-1/2 z-50',
-      ]"
-    >
-      <svg :width="svgSize" :height="svgSize" class="z-50">
-        <!-- Rotating group -->
-        <g
-          :transform="`rotate(${paths.rotation} ${svgSize / 2} ${svgSize / 2})`"
-          class="transition-all duration-800 ease-in-out"
-        >
-          <path
-            v-for="(transform, index) in paths.transforms"
-            :key="index"
-            :id="`path${index}`"
-            :d="paths.d"
-            :transform="transform"
-            class="cursor-pointer fill-black/20 stroke-white stroke-2"
-            @click="() => pathClick(index)"
-          />
-          <text
-            v-for="(transform, index) in paths.textTransforms"
-            :key="'text-' + index"
-            :transform="transform"
-            class="cursor-pointer stroke-white fill-white"
-            @click="() => pathClick(index)"
-          >
-            <tspan dx="230" dy="35" class="text-5xl font-bold whitespace-wrap">
-              {{ paths.sections[index]?.title }}
-            </tspan>
-          </text>
-        </g>
-      </svg>
+  <div
+    class="h-screen w-full flex justify-center items-center bg-black text-white"
+  >
+    <div class="flex flex-col gap-6">
+      <span class="text-9xl font-bold">Hi</span>
+      <!-- logout button -->
+      <button @click="logout">Logout</button>
     </div>
   </div>
 </template>
