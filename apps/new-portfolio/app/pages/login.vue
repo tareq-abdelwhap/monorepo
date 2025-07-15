@@ -1,50 +1,8 @@
 <script setup lang="ts">
 definePageMeta({ middleware: 'guest', layout: 'auth' });
 
-const supabase = useSupabaseClient();
-const email = ref('');
-const otp = ref('');
-const errorMsg = ref('');
-const loading = ref(false);
-const openOtpModal = ref(false);
-
-const login = async () => {
-  errorMsg.value = '';
-  loading.value = true;
-
-  const { error } = await supabase.auth.signInWithOtp({ email: email.value });
-
-  loading.value = false;
-
-  if (error) {
-    errorMsg.value = error.message;
-  } else {
-    openOtpModal.value = true;
-  }
-};
-
-const verifyOTP = async () => {
-  try {
-    loading.value = true;
-
-    const { error } = await supabase.auth.verifyOtp({
-      email: email.value,
-      token: otp.value,
-      type: 'email',
-    });
-
-    if (error) throw error;
-
-    const { error: sessionError } = await supabase.auth.getSession();
-
-    if (sessionError) throw sessionError;
-
-    navigateTo({ path: '/' });
-  } catch (error) {
-    console.error(error);
-    loading.value = false;
-  }
-};
+const authStore = useAuthStore();
+const { email, otp, errorMsg, loading, openOtpModal } = storeToRefs(authStore);
 </script>
 
 <template>
@@ -79,7 +37,7 @@ const verifyOTP = async () => {
         </div>
 
         <button
-          @click="login"
+          @click="authStore.login"
           :disabled="loading"
           class="bg-white text-black font-semibold py-3 rounded-md hover:bg-gray-300 transition disabled:opacity-50"
         >
@@ -120,7 +78,7 @@ const verifyOTP = async () => {
           />
 
           <button
-            @click="verifyOTP"
+            @click="authStore.verifyOTP"
             :disabled="loading"
             class="bg-white text-black font-semibold py-3 rounded-md hover:bg-gray-300 transition disabled:opacity-50"
             v-text="loading ? 'Verifying...' : `Verify`"
