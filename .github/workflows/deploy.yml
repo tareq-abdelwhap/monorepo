@@ -83,7 +83,7 @@ jobs:
 
       - name: Install dependencies
         # run pnpm install within the app directory by using the matrix path
-        run: pnpm -F ${{ matrix.app.path }} install
+        run: pnpm install
         if: steps.check_changes.outputs.changed == 'true'
 
       - name: Deploy to Netlify
