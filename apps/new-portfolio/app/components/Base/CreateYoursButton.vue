@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 const createYours = () => {
-  console.log('createYours');
-  console.log('------------------------');
+  navigateTo('/');
 };
 </script>
 
