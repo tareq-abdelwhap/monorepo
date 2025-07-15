@@ -1,8 +1,10 @@
 <script lang="ts" setup>
-const portfolioStore = usePortfolioStore();
-const { experiences } = storeToRefs(portfolioStore);
+const { data } = defineProps<{
+  data: MyExperience[];
+}>();
 
-callOnce(() => experiences.value.reverse());
+const portfolioStore = usePortfolioStore();
+const { skills } = storeToRefs(portfolioStore);
 </script>
 
 <template>
@@ -11,7 +13,7 @@ callOnce(() => experiences.value.reverse());
   >
     <div
       class="grid grid-cols-1 sm:grid-cols-6 sm:gap-y-2 sm:gap-x-5 w-full"
-      v-for="(experience, index) in experiences"
+      v-for="(experience, index) in data"
       :key="experience.company"
       v-motion
       :initial="{ opacity: 0, x: -30 }"
@@ -27,7 +29,7 @@ callOnce(() => experiences.value.reverse());
           'text-xs sm:text-sm text-start sm:text-end sm:border-e border-slate-600 pe-3 sm:pe-5',
         ]"
       >
-        {{ experience.date.join(' - ') }}
+        {{ `${experience.from} - ${experience.to || 'Present'}` }}
       </div>
       <div class="sm:col-span-5">
         <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
@@ -57,13 +59,10 @@ callOnce(() => experiences.value.reverse());
         <div class="flex flex-wrap gap-2">
           <span
             v-for="skill in experience.skills"
-            :key="skill.name"
-            :class="[
-              'text-xs sm:text-sm px-2 sm:px-3 mt-1 inline-block rounded-full border',
-              `${skill.borderColor} ${skill.color}`,
-            ]"
+            :key="skill"
+            class="text-xs sm:text-sm px-2 sm:px-3 mt-1 inline-block rounded-full border"
           >
-            {{ skill.name }}
+            {{ skills.find(s => s.id === skill)?.name }}
           </span>
         </div>
       </div>

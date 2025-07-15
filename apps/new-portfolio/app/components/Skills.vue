@@ -1,10 +1,24 @@
 <script lang="ts" setup>
-const portfolioStore = usePortfolioStore();
-const { skills } = storeToRefs(portfolioStore);
+const { data } = defineProps<{
+  data: MySkills[];
+}>();
 
-const frontendSkills = computed(() =>
-  skills.value.filter(skill => skill.type === 'frontend')
-);
+const portfolioStore = usePortfolioStore();
+const { experiences } = storeToRefs(portfolioStore);
+
+const getSkillEXP = (skill: MySkills) => {
+  const currentYear = new Date().getFullYear();
+
+  const exp =
+    (experiences.value
+      .filter(exp => exp.skills?.includes(skill.id))
+      .reduce(
+        (acc, curr) => (acc += (!curr.to ? currentYear : curr.to) - curr.from),
+        0
+      ) || 1) - 1;
+
+  return `+${exp || skill.duration} ${skill.new ? 'months' : 'years'}`;
+};
 </script>
 
 <template>
@@ -12,10 +26,10 @@ const frontendSkills = computed(() =>
     class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 sm:gap-y-8 w-full"
   >
     <div
-      v-for="(skill, index) in frontendSkills"
+      v-for="(skill, index) in data"
       :key="skill.name"
       :class="[
-        `relative px-2 sm:px-3 md:px- sm:py-2 rounded-2xl bg-transparent content-center border ${skill.borderColor}`,
+        `relative px-2 sm:px-3 md:px- sm:py-2 rounded-2xl bg-transparent content-center border`,
       ]"
       v-motion
       :initial="{ opacity: 0, y: 40 }"
@@ -27,6 +41,7 @@ const frontendSkills = computed(() =>
     >
       <div class="relative z-10">
         <Icon
+          v-if="skill.icon"
           :name="skill.icon"
           :class="[
             'text-2xl sm:text-3xl md:text-4xl text-white',
@@ -37,12 +52,13 @@ const frontendSkills = computed(() =>
         <div class="flex justify-between content-center my-2">
           <h3
             class="text-xs sm:text-md md:text-xl lg:text-2xl font-semibold text-white"
-          >
-            {{ skill.name }}
-          </h3>
-          <p class="self-center text-xs sm:text-sm">
-            {{ `${skill.duration}` }}
-          </p>
+            v-text="skill.name"
+          />
+
+          <p
+            class="self-center text-xs sm:text-sm"
+            v-text="getSkillEXP(skill)"
+          />
         </div>
         <span
           v-if="skill.new"
@@ -55,6 +71,7 @@ const frontendSkills = computed(() =>
       </div>
     </div>
   </div>
+  <!-- <pre>{{ experiences }}</pre> -->
 </template>
 
 <style scoped></style>

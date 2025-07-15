@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts" setup async>
 const containerRef = ref(null);
 
 const {
@@ -9,7 +9,7 @@ const {
   paths,
   pathClick,
   hydratedComponents,
-} = await usePortfolioController(containerRef);
+} = usePortfolioController(containerRef);
 </script>
 
 <template>
@@ -39,7 +39,7 @@ const {
 
             <div class="z-50 text-white col-start-2 col-span-full px-12">
               <component
-                :is="hydratedComponents[idx]"
+                :is="hydratedComponents[currentSectionIndex]"
                 v-if="idx === currentSectionIndex"
                 :data="slide.data"
               />
