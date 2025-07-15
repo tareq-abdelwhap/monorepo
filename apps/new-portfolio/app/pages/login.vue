@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { useSupabaseClient, useSupabaseUser } from '#imports';
-import { ref, watchEffect } from 'vue';
-import { useRouter } from 'vue-router';
-
-definePageMeta({ layout: 'auth' });
+definePageMeta({ middleware: 'guest', layout: 'auth' });
 
 const supabase = useSupabaseClient();
 const email = ref('');
