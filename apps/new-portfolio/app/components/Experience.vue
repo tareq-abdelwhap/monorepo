@@ -9,7 +9,7 @@ const { skills } = storeToRefs(portfolioStore);
 
 <template>
   <div
-    class="w-full flex flex-wrap gap-y-8 sm:gap-y-10 max-h-full pb-6 sm:pb-16"
+    class="w-full flex flex-wrap gap-y-6 sm:gap-y-10 px-4 sm:px-8 pb-6 sm:pb-16"
   >
     <div
       class="grid grid-cols-1 sm:grid-cols-6 sm:gap-y-2 sm:gap-x-5 w-full"
@@ -25,8 +25,9 @@ const { skills } = storeToRefs(portfolioStore);
     >
       <div
         :class="[
-          'sm:col-span-1',
-          'text-xs sm:text-sm text-start sm:text-end sm:border-e border-slate-600 pe-3 sm:pe-5',
+          'sm:col-span-1 text-start sm:text-end',
+          'text-[11px] sm:text-xs md:text-sm',
+          'border-slate-600 pe-2 sm:pe-4 sm:border-e',
         ]"
       >
         {{ `${experience.from} - ${experience.to || 'Present'}` }}
@@ -40,7 +41,7 @@ const { skills } = storeToRefs(portfolioStore);
           <span
             v-for="tag in experience.tags"
             :key="tag"
-            class="text-xs px-2 py-1 me-2 bg-zinc-700 rounded-full inline-block mt-1"
+            class="text-[10px] sm:text-xs px-2 sm:px-3 py-[2px] sm:py-1 me-2 bg-zinc-700 rounded-full inline-block mt-1"
           >
             {{ tag }}
           </span>
@@ -60,7 +61,7 @@ const { skills } = storeToRefs(portfolioStore);
           <span
             v-for="skill in experience.skills"
             :key="skill"
-            class="text-xs sm:text-sm px-2 sm:px-3 mt-1 inline-block rounded-full border"
+            class="text-[10px] sm:text-xs md:text-sm px-2 sm:px-3 py-[2px] sm:py-1 mt-1 inline-block rounded-full border"
           >
             {{ skills.find(s => s.id === skill)?.name }}
           </span>
