@@ -17,7 +17,7 @@ declare global {
 
   interface MyHome extends Base {
     name: string;
-    jobTitle: string;
+    job_title: string;
     summary: string;
 
     page_id: number;

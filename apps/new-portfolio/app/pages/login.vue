@@ -1,8 +1,19 @@
 <script setup lang="ts">
+import type { input } from '#build/ui';
+import * as v from 'valibot';
+
 definePageMeta({ middleware: 'guest', layout: 'auth' });
 
 const authStore = useAuthStore();
-const { email, otp, errorMsg, loading, openOtpModal } = storeToRefs(authStore);
+const { loading, openOtpModal } = storeToRefs(authStore);
+
+const loginState = reactive({ email: '' });
+const emailSchema = v.object({
+  email: v.pipe(v.string(), v.email('Invalid email')),
+});
+
+const otp = ref('');
+const otpSchema = v.pipe(v.string(), v.length(6, 'Invalid OTP'));
 </script>
 
 <template>
@@ -15,35 +26,31 @@ const { email, otp, errorMsg, loading, openOtpModal } = storeToRefs(authStore);
       <h1 class="text-3xl font-bold text-white mb-2">Welcome Back</h1>
       <p class="mb-6 text-gray-400">Sign in to continue your journey</p>
 
-      <div class="flex flex-col gap-4">
-        <div class="flex flex-col gap-1">
-          <input
-            v-model="email"
-            type="email"
+      <u-form
+        :state="loginState"
+        :schema="emailSchema"
+        class="flex flex-col gap-4"
+        @submit.prevent="() => authStore.login(loginState.email)"
+      >
+        <u-form-field label="Email" name="email">
+          <u-input
+            v-model="loginState.email"
             placeholder="Email"
-            :class="[
-              'p-3 bg-white/10',
-              'text-white placeholder-gray-400',
-              'focus:outline-none focus:ring-2 focus:ring-white/20',
-              'border rounded-md',
-              !!errorMsg ? 'border-red-400' : 'border-white/20',
-            ]"
+            size="xl"
+            class="w-full"
+            :ui="{
+              base: 'bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/20 border border-white/20 rounded-md',
+            }"
           />
-          <span
-            v-if="errorMsg"
-            class="text-red-400 text-sm"
-            v-text="errorMsg"
-          />
-        </div>
+        </u-form-field>
 
-        <button
-          @click="authStore.login"
-          :disabled="loading"
-          class="bg-white text-black font-semibold py-3 rounded-md hover:bg-gray-300 transition disabled:opacity-50"
-        >
-          {{ loading ? 'Loading...' : 'Login / Sign Up' }}
-        </button>
-      </div>
+        <u-button
+          type="submit"
+          :loading="loading"
+          class="bg-white text-black font-semibold py-3 rounded-md hover:bg-gray-300 transition disabled:opacity-50 w-fit"
+          label="Login / Sign Up"
+        />
+      </u-form>
     </div>
 
     <!-- OTP Modal -->
@@ -78,16 +85,10 @@ const { email, otp, errorMsg, loading, openOtpModal } = storeToRefs(authStore);
           />
 
           <button
-            @click="authStore.verifyOTP"
+            @click="() => authStore.verifyOTP(loginState.email, otp)"
             :disabled="loading"
             class="bg-white text-black font-semibold py-3 rounded-md hover:bg-gray-300 transition disabled:opacity-50"
             v-text="loading ? 'Verifying...' : `Verify`"
-          />
-
-          <span
-            v-if="errorMsg"
-            class="text-red-400 text-sm mt-2"
-            v-text="errorMsg"
           />
         </div>
       </div>

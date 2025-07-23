@@ -1,35 +1,31 @@
 export const useAuthStore = defineStore('authStore', () => {
   const supabase = useSupabaseClient();
 
-  const email = ref('');
-  const otp = ref('');
-  const errorMsg = ref('');
+  // const email = ref('');
+  // const otp = ref('');
+  // const errorMsg = ref('');
   const loading = ref(false);
   const openOtpModal = ref(false);
 
-  const login = async () => {
-    errorMsg.value = '';
+  const login = async (email: string) => {
     loading.value = true;
 
-    const { error } = await supabase.auth.signInWithOtp({ email: email.value });
+    const { error } = await supabase.auth.signInWithOtp({ email });
 
     loading.value = false;
 
-    if (error) {
-      errorMsg.value = error.message;
-      throw error;
-    }
+    if (error) throw error;
 
     openOtpModal.value = true;
   };
 
-  const verifyOTP = async () => {
+  const verifyOTP = async (email: string, token: string) => {
     try {
       loading.value = true;
 
       const { error } = await supabase.auth.verifyOtp({
-        email: email.value,
-        token: otp.value,
+        email,
+        token,
         type: 'email',
       });
 
@@ -48,9 +44,9 @@ export const useAuthStore = defineStore('authStore', () => {
   };
 
   return {
-    email,
-    otp,
-    errorMsg,
+    // email,
+    // otp,
+    // errorMsg,
     loading,
     openOtpModal,
 

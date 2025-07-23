@@ -51,17 +51,13 @@ onMounted(() =>
     ]"
   >
     <!-- Percentage Counter -->
-    <div class="text-white text-sm mb-2 tracking-wide">
-      {{ progress }} / 100
-    </div>
+    <div
+      class="text-white text-sm mb-2 tracking-wide"
+      v-text="`${progress} %`"
+    />
 
     <!-- Progress Bar -->
-    <div class="w-[80%] h-2 bg-white/10 rounded overflow-hidden">
-      <div
-        class="h-full bg-gradient-to-r from-transparent via-white/50 to-transparent transition-all"
-        :style="{ width: `${progress}%` }"
-      ></div>
-    </div>
+    <u-progress v-model="progress" class="w-[80%]" color="neutral" />
   </div>
 </template>
 

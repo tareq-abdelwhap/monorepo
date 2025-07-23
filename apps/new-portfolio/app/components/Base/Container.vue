@@ -1,9 +1,9 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="w-screen max-w-[2160px] mx-auto">
+  <u-container class="w-screen max-w-[2160px] mx-auto">
     <slot />
-  </div>
+  </u-container>
 </template>
 
 <style scoped></style>

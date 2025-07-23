@@ -10,7 +10,7 @@
   >
     <slot />
 
-    <BaseFooter />
+    <base-footer />
   </div>
 </template>
 

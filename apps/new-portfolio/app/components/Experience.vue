@@ -33,28 +33,30 @@ const { skills } = storeToRefs(portfolioStore);
         {{ `${experience.from} - ${experience.to || 'Present'}` }}
       </div>
       <div class="sm:col-span-5">
-        <h2 class="text-lg sm:text-xl md:text-2xl font-bold">
-          {{ experience.company }}
-        </h2>
+        <h2
+          class="text-lg sm:text-xl md:text-2xl font-bold"
+          v-text="experience.company"
+        />
+
         <p class="mb-2 text-sm sm:text-base">
           {{ experience.position }}
+
           <span
             v-for="tag in experience.tags"
             :key="tag"
             class="text-[10px] sm:text-xs px-2 sm:px-3 py-[2px] sm:py-1 me-2 bg-zinc-700 rounded-full inline-block mt-1"
-          >
-            {{ tag }}
-          </span>
+            v-text="tag"
+          />
         </p>
+
         <ul
           class="hidden sm:block list-disc ps-4 sm:ps-6 md:ps-12 mb-2 text-sm sm:text-base"
         >
           <li
             v-for="responsibility in experience.responsibilities"
             :key="responsibility"
-          >
-            {{ responsibility }}
-          </li>
+            v-text="responsibility"
+          />
         </ul>
 
         <div class="flex flex-wrap gap-2">
@@ -62,9 +64,8 @@ const { skills } = storeToRefs(portfolioStore);
             v-for="skill in experience.skills"
             :key="skill"
             class="text-[10px] sm:text-xs md:text-sm px-2 sm:px-3 py-[2px] sm:py-1 mt-1 inline-block rounded-full border"
-          >
-            {{ skills.find(s => s.id === skill)?.name }}
-          </span>
+            v-text="skills.find(s => s.id === skill)?.name"
+          />
         </div>
       </div>
     </div>

@@ -2,13 +2,13 @@
 
 <template>
   <div class="relative h-screen w-full overflow-hidden">
-    <BasePreLoader />
+    <base-pre-loader />
 
-    <BaseCreateYoursButton />
+    <base-create-yours-button />
 
     <slot />
 
-    <BaseFooter />
+    <base-footer />
   </div>
 </template>
 

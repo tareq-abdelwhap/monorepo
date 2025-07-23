@@ -34,7 +34,7 @@ defineProps<{
       v-motion
       :initial="{ opacity: 0, x: -70 }"
       :enter="{ opacity: 1, x: 0, transition: { duration: 800, delay: 500 } }"
-      v-text="`a ${home.jobTitle}`"
+      v-text="`a ${home.job_title}`"
     />
 
     <!-- Paragraph -->

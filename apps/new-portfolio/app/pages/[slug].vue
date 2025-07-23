@@ -14,7 +14,7 @@ const {
 
 <template>
   <div class="relative h-screen w-full overflow-hidden">
-    <ClientOnly>
+    <client-only>
       <swiper-container
         ref="containerRef"
         class="h-full w-full"
@@ -25,7 +25,7 @@ const {
         @swiperslidechange="swiperChange"
       >
         <swiper-slide v-for="(slide, idx) in slides" :key="idx">
-          <BaseContainer
+          <base-container
             :class="[
               'relative',
               'grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5',
@@ -98,10 +98,10 @@ const {
                 </svg>
               </div>
             </div>
-          </BaseContainer>
+          </base-container>
         </swiper-slide>
       </swiper-container>
-    </ClientOnly>
+    </client-only>
   </div>
 </template>
 

@@ -41,7 +41,7 @@ const getSkillEXP = (skill: MySkills) => {
       }"
     >
       <div class="relative z-10">
-        <Icon
+        <icon
           v-if="skill.icon"
           :name="skill.icon"
           :class="[
