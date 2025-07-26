@@ -9,7 +9,6 @@ import { useRuntimeOptions } from "./runtime/composables/useRuntimeOptions";
 import { useViteExtendConfig } from "./runtime/composables/useViteExtendConfigHook";
 import { useNitroConfig } from "./runtime/composables/useNitroConfig";
 // import { useInstallI18n } from "./runtime/composables/useInstallI18n";
-import { useInstallTailwindcss } from "./runtime/composables/useInstallTailwindcss";
 import fs from "node:fs";
 import { useInstallNuxtUI } from "./runtime/composables/useInstallNuxtUI";
 
@@ -24,12 +23,8 @@ export default defineNuxtModule<ModuleOptions>({
     },
     chunksControl: {},
 
-    googleFonts: {},
+    // googleFonts: {},
 
-    // tailwindcss: {
-    //   cssPath: [`tailwind.css`, { injectPosition: "first" }],
-    //   config: "tailwind.config",
-    // },
     nuxtUI: {},
 
     pinia: {},
@@ -72,9 +67,9 @@ export default defineNuxtModule<ModuleOptions>({
     useNitroConfig(_nuxt, starter);
 
     /* Google Fonts */
-    if (!hasNuxtModule("@nuxtjs/google-fonts")) {
-      await installModule("@nuxtjs/google-fonts", starter.googleFonts);
-    }
+    // if (!hasNuxtModule("@nuxtjs/google-fonts")) {
+    //   await installModule("@nuxtjs/google-fonts", starter.googleFonts);
+    // }
 
     /* Nuxt UI */
     if (!hasNuxtModule("@nuxt/ui")) {
@@ -84,23 +79,15 @@ export default defineNuxtModule<ModuleOptions>({
       ]);
     }
 
-    /* TailwindCSS */
-    // await useInstallTailwindcss(
-    //   _nuxt,
-    //   { rootResolver, starterPath },
-    //   starter.tailwindcss
-    // );
-
     /* Pinia Store */
-
     if (!hasNuxtModule("@pinia/nuxt")) {
       await installModule("@pinia/nuxt", starter.pinia);
     }
-
     if (!hasNuxtModule("pinia")) {
       await installModule("pinia");
     }
 
+    /* Pinia Colada */
     if (!hasNuxtModule("@pinia/colada-nuxt")) {
       await installModule("@pinia/colada-nuxt");
     }
@@ -109,8 +96,5 @@ export default defineNuxtModule<ModuleOptions>({
     // if (!hasNuxtModule("@nuxtjs/i18n")) {
     //   await useInstallI18n(_nuxt, { rootResolver, starterPath }, starter.i18n);
     // }
-
-    /* Color Mode */
-    /* Comming Soon */
   },
 });
