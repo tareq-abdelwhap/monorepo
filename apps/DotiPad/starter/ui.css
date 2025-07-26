@@ -1,5 +1,4 @@
-@import 'tailwindcss';
-@import '@nuxt/ui';
+@import '@nuxt-starter/ui';
 
 @theme {
   --font-nunito: Nunito, sans-serif;
