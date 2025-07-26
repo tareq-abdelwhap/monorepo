@@ -11,9 +11,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-swiper',
     '@vueuse/motion/nuxt',
-    '@nuxt/icon',
     '@nuxtjs/supabase',
-    '@nuxt/ui',
   ],
 
   swiper: {

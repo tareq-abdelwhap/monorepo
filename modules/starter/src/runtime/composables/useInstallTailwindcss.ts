@@ -46,7 +46,6 @@ export const useInstallTailwindcss = async (
 
   nuxt.hook("vite:extendConfig", (config) => {
     config.plugins ||= [];
-    // @ts-expect-error tailwindcss is a Vite plugin
     config.plugins.push(tailwindcss());
   });
 };

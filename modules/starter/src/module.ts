@@ -11,6 +11,7 @@ import { useNitroConfig } from "./runtime/composables/useNitroConfig";
 // import { useInstallI18n } from "./runtime/composables/useInstallI18n";
 import { useInstallTailwindcss } from "./runtime/composables/useInstallTailwindcss";
 import fs from "node:fs";
+import { useInstallNuxtUI } from "./runtime/composables/useInstallNuxtUI";
 
 export default defineNuxtModule<ModuleOptions>({
   meta: { name: "nuxt-starter", configKey: "starter" },
@@ -25,10 +26,11 @@ export default defineNuxtModule<ModuleOptions>({
 
     googleFonts: {},
 
-    tailwindcss: {
-      cssPath: [`tailwind.css`, { injectPosition: "first" }],
-      config: "tailwind.config",
-    },
+    // tailwindcss: {
+    //   cssPath: [`tailwind.css`, { injectPosition: "first" }],
+    //   config: "tailwind.config",
+    // },
+    nuxtUI: {},
 
     pinia: {},
 
@@ -74,12 +76,20 @@ export default defineNuxtModule<ModuleOptions>({
       await installModule("@nuxtjs/google-fonts", starter.googleFonts);
     }
 
+    /* Nuxt UI */
+    if (!hasNuxtModule("@nuxt/ui")) {
+      await Promise.all([
+        installModule("@nuxt/ui", starter.nuxtUI),
+        useInstallNuxtUI(_nuxt, { rootResolver, starterPath }),
+      ]);
+    }
+
     /* TailwindCSS */
-    await useInstallTailwindcss(
-      _nuxt,
-      { rootResolver, starterPath },
-      starter.tailwindcss
-    );
+    // await useInstallTailwindcss(
+    //   _nuxt,
+    //   { rootResolver, starterPath },
+    //   starter.tailwindcss
+    // );
 
     /* Pinia Store */
     if (!hasNuxtModule("@pinia/nuxt")) {
