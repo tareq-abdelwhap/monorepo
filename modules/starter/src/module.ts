@@ -92,11 +92,17 @@ export default defineNuxtModule<ModuleOptions>({
     // );
 
     /* Pinia Store */
+
     if (!hasNuxtModule("@pinia/nuxt")) {
       await installModule("@pinia/nuxt", starter.pinia);
     }
+
     if (!hasNuxtModule("pinia")) {
       await installModule("pinia");
+    }
+
+    if (!hasNuxtModule("@pinia/colada-nuxt")) {
+      await installModule("@pinia/colada-nuxt");
     }
 
     /* I18n */ // There is an Error in @nuxtjs/i18n
