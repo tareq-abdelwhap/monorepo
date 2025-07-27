@@ -1,32 +1,50 @@
 <script lang="ts" setup>
-/* SERVER STATE MANAGMENT */
+// const fetchHello = async () => {
+//   const res = await fetch('https://dummyjson.com/test', { method: 'POST' });
+//   return await res.json();
+// };
 
-/**
- *
- *  Common storage patterns
- * - in a locale scope (components, pages, etc)
- *     - no cache
- * - in a store
- *     - no refresh on regular stores
- * NOT the only issue
- *
- * **/
-
-/**
- *
- * Other issues
- * - STATE related to the fetch (loading, errors, etc)
- * - Request DEDUPLICATIONS
- * - WHEN to refresh the data ?
- *     - On component mount | after a mutation ?
- *     - On windows focus | On reconnection ?
- * - GARBAGE COLLECTING the inactive cache ?
- *
- * **/
+// const {
+//   // main query properties
+//   asyncStatus,
+//   refresh,
+//   refetch,
+//   // convenient aliases
+//   error,
+//   data,
+//   status,
+//   isLoading,
+//   isPending,
+//   isPlaceholderData,
+// } = useQuery({
+//   key: () => ['testsdfsdf'],
+//   query: fetchHello,
+//   staleTime: 1000,
+// });
 </script>
 
 <template>
-  <u-alert title="test" type="success" />
+  <div class="flex-1 flex flex-col snap-y snap-mandatory overflow-y-scroll">
+    <template-container
+      as="section"
+      id="home"
+      class="flex-1 flex flex-col gap-6 items-center justify-center bg-bg-1"
+    >
+      <div class="flex flex-col gap-6 items-center justify-center">
+        <h1 class="text-bg-text-u font-ubuntu text-brand-2">Developer</h1>
+      </div>
+    </template-container>
+
+    <template-container
+      as="section"
+      id="about"
+      class="flex-1 flex flex-col gap-6 items-center justify-center bg-bg-2"
+    >
+      <div class="flex flex-col gap-6 items-center justify-center">
+        <h1 class="text-bg-text-u font-ubuntu text-brand-2">About</h1>
+      </div>
+    </template-container>
+  </div>
 </template>
 
 <style scoped></style>
