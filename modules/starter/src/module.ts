@@ -83,12 +83,10 @@ export default defineNuxtModule<ModuleOptions>({
     if (!hasNuxtModule("@pinia/nuxt")) {
       await installModule("@pinia/nuxt", starter.pinia);
     }
-    if (!hasNuxtModule("pinia")) {
-      await installModule("pinia");
-    }
 
     /* Pinia Colada */
     if (!hasNuxtModule("@pinia/colada-nuxt")) {
+      _nuxt.options.experimental.renderJsonPayloads = false;
       await installModule("@pinia/colada-nuxt");
     }
 
